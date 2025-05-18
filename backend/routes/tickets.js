@@ -4,9 +4,14 @@ const Ticket = require("../models/ticketModel");
 const router = express.Router();
 
 router.post("/", async (req, res) => {
-  const { title, isCompleted } = req.body;
+  const { title, isCompleted, description, category } = req.body;
   try {
-    const newTicket = await Ticket.create({ title, isCompleted });
+    const newTicket = await Ticket.create({
+      title,
+      isCompleted,
+      description,
+      category,
+    });
     res.status(200).json(newTicket);
   } catch (error) {
     res.status(400).json({ error: error.message });
@@ -14,9 +19,12 @@ router.post("/", async (req, res) => {
 });
 
 router.get("/", async (req, res) => {
-  //res.json({ mssg: "welcome to the app" });
+  const { isCompleted, category } = req.query;
+  const filtro = {};
+  if (isCompleted) filtro.isCompleted = isCompleted;
+  if (category) filtro.category = category;
   try {
-    const getAllTickets = await Ticket.find().sort({ createdAt: -1 });
+    const getAllTickets = await Ticket.find(filtro).sort({ createdAt: -1 });
     res.status(200).json(getAllTickets);
   } catch (error) {
     res.status(400).json({ error: error.message });
