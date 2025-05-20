@@ -1,16 +1,23 @@
 const express = require("express");
 const Ticket = require("../models/ticketModel");
 
+const { getTitleFromDeepSeek } = require("../utils/gerarTituloAI");
+
+// const gerarTitulo = require("../utils/gerarTituloAI");
+
 const router = express.Router();
 
 router.post("/", async (req, res) => {
-  const { title, isCompleted, description, category } = req.body;
+  const { description } = req.body;
+
+  const title = await getTitleFromDeepSeek(description);
+
   try {
     const newTicket = await Ticket.create({
       title,
-      isCompleted,
       description,
-      category,
+      category: "Outros",
+      //status: "pendente",
     });
     res.status(200).json(newTicket);
   } catch (error) {
@@ -19,9 +26,9 @@ router.post("/", async (req, res) => {
 });
 
 router.get("/", async (req, res) => {
-  const { isCompleted, category } = req.query;
+  const { status, category } = req.query;
   const filtro = {};
-  if (isCompleted) filtro.isCompleted = isCompleted;
+  if (status) filtro.status = status;
   if (category) filtro.category = category;
   try {
     const getAllTickets = await Ticket.find(filtro).sort({ createdAt: -1 });
@@ -33,16 +40,36 @@ router.get("/", async (req, res) => {
 
 router.patch("/:id", async (req, res) => {
   const { id } = req.params;
-  const { title, isCompleted } = req.body;
+  const { title, description, category, status } = req.body;
+
+  const updateData = {};
+
+  if (title) {
+    updateData.title = title;
+  }
+  if (description) {
+    updateData.description = description;
+  }
+
+  if (category) {
+    const categoryNormalizada = category
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .toLowerCase();
+
+    updateData.category = categoryNormalizada;
+  }
+  if (status) {
+    updateData.status = status.toLowerCase();
+  }
 
   //res.status(200).json({ id: id, title: title, isCompleted: isCompleted });
 
   try {
-    const editTicket = await Ticket.findByIdAndUpdate(
-      id,
-      { title, isCompleted },
-      { new: true, runValidators: true }
-    );
+    const editTicket = await Ticket.findByIdAndUpdate(id, updateData, {
+      new: true,
+      runValidators: true,
+    });
     if (!editTicket) {
       return res.status(404).json({ error: "Ticket não encontrado." });
     }
@@ -60,16 +87,6 @@ router.delete("/:id", async (req, res) => {
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
-});
-
-router.get("/por-completar/", async (req, res) => {
-  const getTicketsByStatus = await Ticket.find({ isCompleted: false });
-  res.status(200).json(getTicketsByStatus);
-});
-
-router.get("/completos/", async (req, res) => {
-  const getTicketsByStatus = await Ticket.find({ isCompleted: true });
-  res.status(200).json(getTicketsByStatus);
 });
 
 router.get("/:id", async (req, res) => {

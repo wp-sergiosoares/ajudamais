@@ -6,7 +6,7 @@ const ticketSchema = new Schema(
   {
     title: {
       type: String,
-      required: true,
+      required: false,
     },
     description: {
       type: String,
@@ -16,10 +16,10 @@ const ticketSchema = new Schema(
       type: String,
       required: true,
     },
-    isCompleted: {
-      type: Boolean,
+    status: {
+      type: String,
       required: true,
-      default: false,
+      default: "pendente",
     },
   },
   { timestamps: true }
