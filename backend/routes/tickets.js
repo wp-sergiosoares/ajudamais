@@ -3,27 +3,11 @@ const Ticket = require("../models/ticketModel");
 
 const { getTitleFromDeepSeek } = require("../utils/gerarTituloAI");
 
-// const gerarTitulo = require("../utils/gerarTituloAI");
+// vou buscar o user ID
+// adiciona ao req a propriedade req.user
+const requireAuth = require("../middleware/requireAuth");
 
 const router = express.Router();
-
-router.post("/", async (req, res) => {
-  const { description } = req.body;
-
-  const title = await getTitleFromDeepSeek(description);
-
-  try {
-    const newTicket = await Ticket.create({
-      title,
-      description,
-      category: "Outros",
-      //status: "pendente",
-    });
-    res.status(200).json(newTicket);
-  } catch (error) {
-    res.status(400).json({ error: error.message });
-  }
-});
 
 router.get("/", async (req, res) => {
   const { status, category } = req.query;
@@ -33,6 +17,45 @@ router.get("/", async (req, res) => {
   try {
     const getAllTickets = await Ticket.find(filtro).sort({ createdAt: -1 });
     res.status(200).json(getAllTickets);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+});
+
+router.get("/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    const getSingleTicket = await Ticket.findById(id);
+    res.status(200).json(getSingleTicket);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+});
+
+router.use(requireAuth);
+
+router.post("/", async (req, res) => {
+  const { description } = req.body;
+  let emptyFields = [];
+  if (!description) {
+    emptyFields.push("description");
+  }
+  if (emptyFields.length > 0) {
+    return res.status(400).json({ error: "Please fill all", emptyFields });
+  }
+  const title = await getTitleFromDeepSeek(description);
+
+  // ? nao le o id
+
+  try {
+    const user_id = req.user._id;
+    const newTicket = await Ticket.create({
+      title,
+      description,
+      category: "Outros",
+      user_id,
+    });
+    res.status(200).json(newTicket);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
@@ -84,16 +107,6 @@ router.delete("/:id", async (req, res) => {
   try {
     const deleteTicket = await Ticket.findByIdAndDelete(id);
     res.status(200).json({ message: "Ticket apagado com sucesso." });
-  } catch (error) {
-    res.status(400).json({ error: error.message });
-  }
-});
-
-router.get("/:id", async (req, res) => {
-  const { id } = req.params;
-  try {
-    const getSingleTicket = await Ticket.findById(id);
-    res.status(200).json(getSingleTicket);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }

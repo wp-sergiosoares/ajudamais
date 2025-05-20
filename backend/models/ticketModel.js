@@ -21,6 +21,10 @@ const ticketSchema = new Schema(
       required: true,
       default: "pendente",
     },
+    user_id: {
+      type: String,
+      required: true,
+    },
   },
   { timestamps: true }
 );

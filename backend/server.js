@@ -5,9 +5,6 @@ const mongoose = require("mongoose");
 
 const userRoutes = require("./routes/user");
 
-// import need routes
-const needRoutes = require("./routes/need");
-
 const ticketsRoutes = require("./routes/tickets");
 
 // express app
@@ -24,9 +21,6 @@ app.use((req, res, next) => {
 // routes
 
 app.use("/api/user", userRoutes);
-
-// needs route
-app.use("/api/needs", needRoutes);
 
 // rota de testes
 app.use("/api/tickets", ticketsRoutes);
