@@ -1,16 +1,19 @@
 const Ticket = require("../models/ticketModel");
 const mongoose = require("mongoose");
 
+const { getTitleFromDeepSeek } = require("../utils/gerarTituloAI");
+
 // get all tickets
 // *
 // *
 // *
 // *
 const getAllTickets = async (req, res) => {
-  const { status, category } = req.query;
+  const { status, category, typeOfTicket } = req.query;
   const filtro = {};
   if (status) filtro.status = status;
   if (category) filtro.category = category;
+  if (typeOfTicket) filtro.typeOfTicket = typeOfTicket;
   try {
     const getAllTickets = await Ticket.find(filtro).sort({ createdAt: -1 });
     res.status(200).json(getAllTickets);
@@ -40,26 +43,29 @@ const getSingleTicket = async (req, res) => {
 // *
 // *
 const createTicket = async (req, res) => {
-  const { description } = req.body;
-  let emptyFields = [];
-  if (!description) {
-    emptyFields.push("description");
+  const { description, typeOfTicket, category, status, location } = req.body;
+
+  // Verificação simples
+  if (!typeOfTicket || !category || !description) {
+    return res.status(400).json({ message: "Campos obrigatórios faltando." });
   }
-  if (emptyFields.length > 0) {
-    return res.status(400).json({ error: "Please fill all", emptyFields });
-  }
+
   const title = await getTitleFromDeepSeek(description);
 
   try {
     const user_id = req.user._id;
     const newTicket = await Ticket.create({
+      typeOfTicket,
       title,
       description,
-      category: "Outros",
+      status,
+      category: category.toLowerCase(),
       user_id,
+      location: location || undefined,
     });
     res.status(200).json(newTicket);
   } catch (error) {
+    console.error(error);
     res.status(400).json({ error: error.message });
   }
 };
@@ -114,7 +120,10 @@ const editTicket = async (req, res) => {
 const deleteTicket = async (req, res) => {
   const { id } = req.params;
   try {
-    const deleteTicket = await Ticket.findByIdAndDelete(id);
+    const deleted = await Ticket.findByIdAndDelete(id);
+    if (!deleted) {
+      return res.status(404).json({ error: "Ticket não encontrado." });
+    }
     res.status(200).json({ message: "Ticket apagado com sucesso." });
   } catch (error) {
     res.status(400).json({ error: error.message });
