@@ -2,6 +2,58 @@ const Ticket = require("../models/ticketModel");
 const mongoose = require("mongoose");
 
 const { getTitleFromDeepSeek } = require("../utils/gerarTituloAI");
+const { getCategoryFromDeepSeek } = require("../utils/gerarCategoryAi");
+
+const getCategoriasUnicas = async (req, res) => {
+  try {
+    const categorias = await Ticket.distinct("category");
+    console.log(categorias);
+    res.status(200).json({ categorias });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Erro ao buscar categorias únicas." });
+  }
+};
+
+const getTicketsNearBy = async (req, res) => {
+  const { lat, lon, maxDistance, status, category, typeOfTicket } = req.query;
+
+  if (!lat || !lon) {
+    return res
+      .status(400)
+      .json({ message: "Latitude e longitude são obrigatórios." });
+  }
+
+  const filters = {
+    ...(status && { status }),
+    ...(category && { category }),
+    ...(typeOfTicket && { typeOfTicket }),
+  };
+
+  // Log dos filtros para debug
+  console.log("Filtros recebidos:", filters);
+  console.log("Parâmetros de localização:", { lat, lon, maxDistance });
+
+  try {
+    const tickets = await Ticket.find({
+      ...filters,
+      location: {
+        $near: {
+          $geometry: {
+            type: "Point",
+            coordinates: [parseFloat(lon), parseFloat(lat)],
+          },
+          $maxDistance: parseInt(maxDistance), // em metros
+        },
+      },
+    });
+
+    res.status(200).json(tickets);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Erro ao buscar tickets próximos." });
+  }
+};
 
 // get all tickets
 // *
@@ -43,14 +95,17 @@ const getSingleTicket = async (req, res) => {
 // *
 // *
 const createTicket = async (req, res) => {
-  const { description, typeOfTicket, category, status, location } = req.body;
+  const { description, typeOfTicket, status, location } = req.body;
 
   // Verificação simples
-  if (!typeOfTicket || !category || !description) {
+  if (!typeOfTicket || !description) {
     return res.status(400).json({ message: "Campos obrigatórios faltando." });
   }
 
   const title = await getTitleFromDeepSeek(description);
+
+  const testCategory = await getCategoryFromDeepSeek(title);
+  console.log(testCategory);
 
   try {
     const user_id = req.user._id;
@@ -59,7 +114,7 @@ const createTicket = async (req, res) => {
       title,
       description,
       status,
-      category: category.toLowerCase(),
+      category: testCategory.map((c) => c.toLowerCase()),
       user_id,
       location: location || undefined,
     });
@@ -136,4 +191,6 @@ module.exports = {
   createTicket,
   editTicket,
   deleteTicket,
+  getTicketsNearBy,
+  getCategoriasUnicas,
 };
