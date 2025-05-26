@@ -50,14 +50,22 @@ const getTicketsNearBy = async (req, res) => {
 // *
 // *
 const getAllTickets = async (req, res) => {
-  const { status, category, typeOfTicket } = req.query;
-  const filtro = {};
-  if (status) filtro.status = status;
-  if (category) filtro.category = category;
-  if (typeOfTicket) filtro.typeOfTicket = typeOfTicket;
+  const user_id = req.user._id;
+  const { status } = req.query;
+
+  const query = { user_id };
+
+  if (status) {
+    query.status = status;
+  }
+  if (user_id) {
+    query.user_id = user_id;
+  }
   try {
-    const getAllTickets = await Ticket.find(filtro).sort({ createdAt: -1 });
-    res.status(200).json(getAllTickets);
+    const tickets = await Ticket.find(query).sort({
+      createdAt: -1,
+    });
+    res.status(200).json(tickets);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
@@ -167,6 +175,7 @@ const editTicket = async (req, res) => {
       return res.status(404).json({ error: "Ticket não encontrado." });
     }
     res.status(200).json(editTicket);
+    //console.log(editTicket);
   } catch (error) {
     res.status(400).json({ msg: error.message });
   }
@@ -184,6 +193,7 @@ const deleteTicket = async (req, res) => {
     if (!deleted) {
       return res.status(404).json({ error: "Ticket não encontrado." });
     }
+    console.log("Ticket deletado:", deleted); // 👈 Verifica o que foi apagado
     res.status(200).json({ message: "Ticket apagado com sucesso." });
   } catch (error) {
     res.status(400).json({ error: error.message });

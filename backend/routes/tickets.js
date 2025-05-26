@@ -19,11 +19,11 @@ const router = express.Router();
 
 router.get("/nearby/", getTicketsNearBy);
 
+router.use(requireAuth);
+
 router.get("/", getAllTickets);
 
 router.get("/:id", getSingleTicket);
-
-//router.use(requireAuth);
 
 router.post("/", createTicket);
 router.patch("/:id", editTicket);

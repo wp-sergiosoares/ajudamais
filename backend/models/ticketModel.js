@@ -23,7 +23,7 @@ const ticketSchema = new Schema(
     status: {
       type: String,
       required: true,
-      default: "pendente",
+      default: "ativo",
     },
     location: {
       type: {
