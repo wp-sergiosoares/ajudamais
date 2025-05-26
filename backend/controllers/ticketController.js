@@ -1,19 +1,8 @@
 const Ticket = require("../models/ticketModel");
 const mongoose = require("mongoose");
+const reverseGeocode = require("../utils/reverseGeocode");
 
 const { getTitleFromDeepSeek } = require("../utils/gerarTituloAI");
-const { getCategoryFromDeepSeek } = require("../utils/gerarCategoryAi");
-
-const getCategoriasUnicas = async (req, res) => {
-  try {
-    const categorias = await Ticket.distinct("category");
-    console.log(categorias);
-    res.status(200).json({ categorias });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "Erro ao buscar categorias únicas." });
-  }
-};
 
 const getTicketsNearBy = async (req, res) => {
   const { lat, lon, maxDistance, status, category, typeOfTicket } = req.query;
@@ -95,28 +84,44 @@ const getSingleTicket = async (req, res) => {
 // *
 // *
 const createTicket = async (req, res) => {
-  const { description, typeOfTicket, status, location } = req.body;
+  //const { description, typeOfTicket, status, location } = req.body;
 
-  // Verificação simples
-  if (!typeOfTicket || !description) {
-    return res.status(400).json({ message: "Campos obrigatórios faltando." });
+  const { typeOfTicket, description, status, location, category } = req.body;
+
+  // // Verificação simples
+  // if (!typeOfTicket || !description) {
+  //   return res.status(400).json({ message: "Campos obrigatórios faltando." });
+  // }
+
+  if (!typeOfTicket || !description || !category) {
+    return res.status(400).json({ error: "Campos obrigatórios em falta" });
   }
 
   const title = await getTitleFromDeepSeek(description);
-
-  const testCategory = await getCategoryFromDeepSeek(title);
-  console.log(testCategory);
+  // const category = await getCategoryFromDeepSeek(title);
 
   try {
     const user_id = req.user._id;
+    const [lon, lat] = location.coordinates;
+
+    // Faz a geocodificação reversa com as coordenadas recebidas
+    const { enderecoCompleto, cidade, pais } = await reverseGeocode(lat, lon);
+
     const newTicket = await Ticket.create({
       typeOfTicket,
       title,
       description,
       status,
-      category: testCategory.map((c) => c.toLowerCase()),
+      category,
       user_id,
-      location: location || undefined,
+      location: {
+        type: "Point",
+        coordinates: [lon, lat], // MongoDB espera [longitude, latitude]
+      },
+      // campos opcionais (ex: salvar endereço junto)
+      endereco: enderecoCompleto,
+      cidade,
+      pais,
     });
     res.status(200).json(newTicket);
   } catch (error) {
@@ -192,5 +197,4 @@ module.exports = {
   editTicket,
   deleteTicket,
   getTicketsNearBy,
-  getCategoriasUnicas,
 };

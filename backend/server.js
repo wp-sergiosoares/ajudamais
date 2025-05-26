@@ -6,6 +6,7 @@ const mongoose = require("mongoose");
 const userRoutes = require("./routes/user");
 
 const ticketsRoutes = require("./routes/tickets");
+const messageRoutes = require("./routes/messages");
 
 // express app
 const app = express();
@@ -24,6 +25,10 @@ app.use("/api/user", userRoutes);
 
 // rota de testes
 app.use("/api/tickets", ticketsRoutes);
+
+// mensagens
+
+app.use("/api/messages", messageRoutes);
 
 // connect to db
 mongoose

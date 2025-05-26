@@ -9,7 +9,6 @@ const {
   editTicket,
   deleteTicket,
   getTicketsNearBy,
-  getCategoriasUnicas,
 } = require("../controllers/ticketController");
 
 // vou buscar o user ID
@@ -18,13 +17,13 @@ const requireAuth = require("../middleware/requireAuth");
 
 const router = express.Router();
 
-router.get("/categorias", getCategoriasUnicas);
 router.get("/nearby/", getTicketsNearBy);
 
 router.get("/", getAllTickets);
+
 router.get("/:id", getSingleTicket);
 
-router.use(requireAuth);
+//router.use(requireAuth);
 
 router.post("/", createTicket);
 router.patch("/:id", editTicket);

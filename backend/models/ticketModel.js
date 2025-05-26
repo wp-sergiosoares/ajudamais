@@ -40,6 +40,9 @@ const ticketSchema = new Schema(
       type: String,
       required: true,
     },
+    endereco: { type: String },
+    cidade: { type: String },
+    pais: { type: String },
   },
   { timestamps: true }
 );
