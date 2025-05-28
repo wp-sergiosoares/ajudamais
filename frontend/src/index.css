@@ -1073,13 +1073,8 @@ footer p {
 }
 
 /* navbar */
-nav {
-  display: flex;
 
-}
-nav a, nav button {
-  margin-left: 10px;
-}
+
 nav button {
   background:transparent;
   color: var(--text-color);
@@ -1218,5 +1213,31 @@ input {
   }
   .ticket-list-columns {
     grid-template-columns: repeat(1,1fr)
+  }
+  .contact-container {
+    width: auto;
+    margin:0 20px;
+  }
+  .form-fields {
+    display: block;
+  }
+  .page-header {
+    margin:20px;
+  }
+  header .container {
+    flex-direction: column;
+    gap:20px;
+    align-items: start;
+  }
+  .site-menu {
+    position: relative;
+    left: auto;
+    transform: none;
+  }
+
+  footer .container {
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
   }
 }
