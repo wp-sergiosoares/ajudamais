@@ -33,7 +33,7 @@ const TicketSingle = () => {
       }
     };
     getSingleTicket();
-  }, []);
+  }, [id]);
 
   if (!ticket) return <div>Carregando...</div>;
 

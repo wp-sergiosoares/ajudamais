@@ -350,7 +350,6 @@ form.signup, form.login {
 .ticket-list-columns {
   flex-direction: row;
   flex-wrap: wrap;
-  gap:10px;
   margin:0;
   display: grid;
   grid-template-columns: repeat(3,1fr);

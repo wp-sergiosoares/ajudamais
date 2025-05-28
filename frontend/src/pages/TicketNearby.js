@@ -3,7 +3,6 @@ import TicketDetails from "../components/TicketDetails";
 import FiltroType from "../components/FiltroType";
 import FiltroDistance from "../components/FiltroDistance";
 import FiltroCategory from "../components/FiltroCategory";
-import FiltroTempo from "../components/FiltroTempo";
 
 import { useTicketNearBy } from "../hooks/useTicketNearBy";
 
