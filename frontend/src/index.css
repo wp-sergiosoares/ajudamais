@@ -171,9 +171,6 @@ form.signup, form.login {
 
 
 
-@media (max-width: 480px) {
- 
-}
 
 
 .menu {
@@ -305,8 +302,6 @@ form.signup, form.login {
 }
 
 .ticket-list-columns li {
-  max-width: 400px;
-  flex: 1;
   border-bottom:none;
   border-right: var(--backgroud-color) solid 1px;
   border-bottom: var(--backgroud-color) solid 1px;
@@ -1203,5 +1198,25 @@ input {
   to {
     transform: rotate(360deg);
 
+  }
+}
+
+
+@media (max-width: 480px) {
+  header .container,
+  .page-center {
+    width: auto;
+  }
+  .wrapper {
+    margin:20px;
+  }
+  .filtros {
+    flex-direction: column;
+  }
+  .filtros select {
+    width: 100%;
+  }
+  .ticket-list-columns {
+    grid-template-columns: repeat(1,1fr)
   }
 }

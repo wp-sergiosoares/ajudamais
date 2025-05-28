@@ -33,10 +33,6 @@ const TicketDetails = ({ ticket, distance }) => {
           </div>
 
           <div className="ticket-footer">
-            {/* <Link to={`/pedido/${_id}`} className="btn btn-primary btn-small">
-            Quero ajudar
-          </Link> */}
-
             <div className="ticket-date">
               {formatDistanceToNow(new Date(createdAt), {
                 addSuffix: true,
