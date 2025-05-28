@@ -1,11 +1,20 @@
 import { useInfo } from "../context/InfoContext";
-
+import { Link } from "react-router-dom";
 const Footer = () => {
   const { info } = useInfo();
   return (
     <footer>
-      <p>{info.title}</p>
-      <p>{info.description}</p>
+      <div className="container">
+        <p>{info.title}</p>
+        <p>{info.description}</p>
+        <nav>
+          <ul className="menu">
+            <li>
+              <Link to="/">Sobre o Ajuda +</Link>
+            </li>
+          </ul>
+        </nav>
+      </div>
     </footer>
   );
 };

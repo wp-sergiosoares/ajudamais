@@ -40,19 +40,17 @@ function App() {
 
           <Route path="/" element=<Home /> />
 
-          <Route path="/ticket/:id" element=<TicketSingle /> />
-
           <Route path="/adicionar/" element=<TicketAdd /> />
 
           {/* <Route path="/" element=<Home /> /> */}
-          {<Route path="/pedidos/" element=<TicketNearby /> />}
+          {<Route path="/lista-pedidos/" element=<TicketNearby /> />}
           {<Route path="/pedido/:id" element=<TicketSingle /> />}
 
-          <Route path="/messages" element=<Messages /> />
+          {/* <Route path="/messages" element=<Messages /> /> */}
 
-          <Route path="/perfil" element=<UserProfile /> />
-          <Route path="/user/:id" element=<UserProfile /> />
-          <Route path="/all-users/" element=<UserListAll /> />
+          {/* <Route path="/perfil" element=<UserProfile /> /> */}
+          {/* <Route path="/user/:id" element=<UserProfile /> /> */}
+          {/* <Route path="/all-users/" element=<UserListAll /> /> */}
 
           <Route
             path="/login"

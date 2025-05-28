@@ -94,7 +94,7 @@ header .container {
 }
 
 header {
-  
+  margin-bottom: 20px;
 }
 
 header a {
@@ -112,46 +112,6 @@ header a {
 }
 
 
-
-.home {
-  /*
-  display: grid;
-  grid-template-columns: 3fr 1fr;
-  gap:100px;
-  */
-}
-
-.workout-details {
-  background: #fff;
-  border-radius: 4px;
-  margin:20px 0;
-  padding: 20px;
-  position: relative;
-  box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
-}
-
-.workout-details h4 {
-  margin: 0 0 10px 0;
-  font-size: 1.2em;
-  color: var(--primary);
-}
-
-.workout-details p {
-  margin: 0;
-  font-size: 0.9em;
-  color: #555;
-}
-
-.workout-details span {
-  position: absolute;
-  top:20px;
-  right: 20px;
-  cursor: pointer;
-  background: #f1f1f1;
-  padding: 6px;
-  border-radius: 50%;
-  color: #333;
-}
 
 
 
@@ -209,28 +169,10 @@ form.signup, form.login {
 
 
 
-.need-details {
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 20px;
-  border:#ddd solid 1px;
-  flex: 0 0 calc((100% - 20px) / 3); /* 3 por linha */
-  box-sizing: border-box;
-}
-
-.create-need {
-  padding: 20px;
-  border:#ddd solid 1px;
-  margin:25px 0;
-  border-radius: 20px;
-  background-color: #fff;
-}
 
 
 @media (max-width: 480px) {
-  .need-details {
-    flex: 0 0 100%; /* 1 por linha em celulares */
-  }
+ 
 }
 
 
@@ -505,7 +447,7 @@ form.signup, form.login {
   display: flex;
   gap:5px;
   align-items: center;
-  justify-content: start;
+  justify-content: center;
   margin-top: 0;
 }
 
@@ -1090,8 +1032,8 @@ letter-spacing: 0.3rem;
 
 
 footer {
-  padding: 50px 0;
-  margin-top: 50px;
+  padding: 0;
+  margin-top: 20px;
 }
 
 footer p {
@@ -1195,7 +1137,8 @@ input {
   margin-top: 10px;
 }
 
-.logo {
+
+.site-menu {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
@@ -1203,3 +1146,18 @@ input {
   text-align: center;
 }
 
+.info-panel {
+  padding: 2rem;
+  background-color: #fff;
+  border:var(--text-color) solid 1px;
+  border-radius: 5px;
+}
+
+.info-panel h3 {
+  margin:0;
+  margin-bottom:20px;
+}
+
+.info-panel-text {
+  margin-bottom: 30px;
+}

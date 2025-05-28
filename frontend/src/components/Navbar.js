@@ -13,6 +13,14 @@ const Navbar = () => {
   return (
     <header>
       <div className="container">
+        <div className="logo">
+          <Link to="/lista-pedidos/">
+            <h1>
+              Ajuda <span>+</span>
+            </h1>
+          </Link>
+        </div>
+
         <nav className="site-menu">
           <ul className="menu">
             {/* {user && (
@@ -24,7 +32,7 @@ const Navbar = () => {
             <li>
               <Link to="/adicionar/">
                 <span>Pede ou Oferece Ajuda</span>
-                <span class="material-symbols-outlined">call_made</span>
+                <span class="material-symbols-outlined">north</span>
               </Link>
             </li>
             {/* <li>
@@ -42,14 +50,6 @@ const Navbar = () => {
           </ul>
         </nav>
 
-        <div className="logo">
-          <Link to="/pedidos/">
-            <h1>
-              Ajuda <span>+</span>
-            </h1>
-          </Link>
-        </div>
-
         <nav>
           {user && (
             <ul className="menu">
@@ -66,8 +66,8 @@ const Navbar = () => {
           )}
           {!user && (
             <div>
-              <Link to="/login">Login</Link>
-              <Link to="/signup">Signup</Link>
+              <Link to="/login">Iniciar Sessão</Link>
+              <Link to="/signup">Criar Conta</Link>
             </div>
           )}
         </nav>
