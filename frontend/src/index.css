@@ -192,7 +192,7 @@ form.signup, form.login {
 
 
 .site-menu a {
-  border:var(--primary) solid 1.5px;
+  border:var(--primary) solid 2px;
   border-radius: 5px;
   box-shadow: 1.5px 2px 0 var(--primary);
   outline: none;
@@ -312,6 +312,16 @@ form.signup, form.login {
   border-bottom: var(--backgroud-color) solid 1px;
   border:var(--text-color) solid 1px;
   border-radius: 5px;
+  transition: box-shadow 0.2s ease;
+}
+
+
+.ticket-list-columns li:hover {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.ticket-list-columns li:hover {
+  cursor: pointer;
 }
 
 .ticket-list-columns .ticket-title {
@@ -591,6 +601,7 @@ form.signup, form.login {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 20px;
 }
 
 
@@ -1075,14 +1086,13 @@ nav a, nav button {
   margin-left: 10px;
 }
 nav button {
-  background: #fff;
-  color: var(--primary);
-  border: 2px solid var(--primary);
+  background:transparent;
+  color: var(--text-color);
+  border: 2px solid var(--text-color);
   padding: 6px 10px;
-  border-radius: 4px;
-  font-family: "Poppins";
+  border-radius: 5px;
   cursor: pointer;
-  font-size: 1em;
+  font-size: 0.9rem;
 }
 
 /* auth forms */
@@ -1160,4 +1170,38 @@ input {
 
 .info-panel-text {
   margin-bottom: 30px;
+}
+
+
+.ticket-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.spinner-wrapper {
+  position: fixed;
+  left:0;right:0;
+  top:0;bottom:0;
+  background: rgba(255,255,255,0.8);
+}
+
+.spinner {
+  background-color: var(--secondary);
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  border:10px solid var(--text-light);
+  border-top: 8px solid var(--primary);
+  animation: ani 2.5s linear infinite;
+  position: absolute;
+  left:calc(50% - 25px);
+  top:calc(50% - 25px);
+}
+
+@keyframes ani {
+  to {
+    transform: rotate(360deg);
+
+  }
 }

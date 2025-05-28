@@ -10,7 +10,12 @@ const TicketNearby = () => {
   const { tickets, distanceFilter, getDistanceNearBy, isLoading, error } =
     useTicketNearBy();
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading)
+    return (
+      <div className="spinner-wrapper">
+        <div className="spinner"></div>
+      </div>
+    );
   if (error) return <p>Erro: {error}</p>;
 
   console.log(tickets);

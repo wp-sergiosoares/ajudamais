@@ -33,6 +33,8 @@ const FormFields = () => {
   const handleAddTicket = async (e) => {
     e.preventDefault();
 
+    setIsLoading(true);
+
     if (!user) {
       setError("You must be logged in");
       return;
@@ -47,8 +49,6 @@ const FormFields = () => {
       formaContacto: formData.formaContacto,
       category: formData.category,
     };
-
-    setIsLoading(true);
 
     try {
       const response = await fetch("/api/tickets/", {

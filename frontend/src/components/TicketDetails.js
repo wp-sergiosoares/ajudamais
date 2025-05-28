@@ -11,40 +11,40 @@ const TicketDetails = ({ ticket, distance }) => {
 
   return (
     <li key={_id} className={category}>
-      <div className="ticket-container">
-        <div className="ticket-header">
-          <h2 className="ticket-title">
-            <Link to={`/pedido/${_id}`}>{title}</Link>
-          </h2>
-        </div>
-
-        <div className="ticket-content">
-          <div>
-            <span className="ticket-category">
-              {getCategoryLabel(category)}
-            </span>
-            <span>{distance}</span>
+      <Link to={`/pedido/${_id}`} className="ticket-link">
+        <div className="ticket-container">
+          <div className="ticket-header">
+            <h2 className="ticket-title">{title}</h2>
           </div>
 
-          <div>
-            {cidade ? <span> {cidade}</span> : <span>Localização</span>}
+          <div className="ticket-content">
+            <div>
+              <span className="ticket-category">
+                {getCategoryLabel(category)}
+              </span>
+              <span>{distance}</span>
+            </div>
+
+            <div>
+              {cidade ? <span> {cidade}</span> : <span>Localização</span>}
+            </div>
+
+            {/* <div className="ticket-description">{description}</div> */}
           </div>
 
-          {/* <div className="ticket-description">{description}</div> */}
-        </div>
-
-        <div className="ticket-footer">
-          {/* <Link to={`/pedido/${_id}`} className="btn btn-primary btn-small">
+          <div className="ticket-footer">
+            {/* <Link to={`/pedido/${_id}`} className="btn btn-primary btn-small">
             Quero ajudar
           </Link> */}
 
-          <div className="ticket-date">
-            {formatDistanceToNow(new Date(createdAt), {
-              addSuffix: true,
-            })}
+            <div className="ticket-date">
+              {formatDistanceToNow(new Date(createdAt), {
+                addSuffix: true,
+              })}
+            </div>
           </div>
         </div>
-      </div>
+      </Link>
     </li>
   );
 };

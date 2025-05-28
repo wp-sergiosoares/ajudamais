@@ -56,9 +56,7 @@ const Navbar = () => {
               {/* <li>
                 <span>{user.email}</span>
               </li> */}
-              <li>
-                <Link to="/">Sobre o Ajuda +</Link>
-              </li>
+
               <li>
                 <button onClick={handleClick}>Log out</button>
               </li>
