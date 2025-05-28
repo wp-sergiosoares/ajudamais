@@ -98,7 +98,11 @@ const TicketAddNew = () => {
   return (
     <div className="page-center page-center-small">
       <div className="page-header">
-        <h1>Adicione</h1>
+        <div>
+          <h1>Novo pedido ou oferta</h1>
+          <p>Ajude ou peça ajuda à sua comunidade — partilhar é cuidar!</p>
+        </div>
+
         <button
           onClick={() => navigate(-1)}
           className="btn btn-small btn-secondary"
@@ -112,7 +116,7 @@ const TicketAddNew = () => {
             <div className="form-fields">
               <div className="form-field">
                 <label htmlFor="type" className="sr-only">
-                  <span>Pedido ou oferta?</span>
+                  <span>O que pretende publicar?</span>
 
                   <select
                     id="type"
@@ -153,7 +157,7 @@ const TicketAddNew = () => {
 
             <div className="form-field">
               <label htmlFor="description">
-                <span>Descrição</span>
+                <span>Descreva o que precisa ou o que oferece</span>
                 <textarea
                   disabled={isLoading}
                   id="description"
@@ -163,7 +167,7 @@ const TicketAddNew = () => {
                   }
                   rows={3}
                   style={{ overflow: "hidden", resize: "none" }}
-                  placeholder="Descreve o teu pedido..."
+                  placeholder='Ex.: "Preciso de boleia para o centro médico"'
                 />
               </label>
             </div>
@@ -171,7 +175,7 @@ const TicketAddNew = () => {
             <div className="form-fields">
               <div className="form-field">
                 <label htmlFor="contacto">
-                  <span>Forma de Contacto</span>
+                  <span>Como prefere ser contactado?</span>
                   <input
                     type="text"
                     id="contacto"
@@ -185,8 +189,8 @@ const TicketAddNew = () => {
                     value={formData.formaContacto}
                   />
                 </label>
+                <span>Pode indicar um número de telefone ou e-mail.</span>
               </div>
-              <div className="form-field"></div>
             </div>
 
             {/* <div className="form-field form-field-radio">

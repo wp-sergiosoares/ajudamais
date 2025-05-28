@@ -13,7 +13,7 @@ import UserProfile from "./pages/UserProfile";
 import UserListAll from "./pages/UserListAll";
 import TicketSingle from "./pages/TicketSingle";
 
-import TicketAddNew from "./pages/TicketAddNew";
+import TicketAdd from "./pages/TicketAdd";
 
 import TicketNearby from "./pages/TicketNearby";
 
@@ -42,7 +42,7 @@ function App() {
 
           <Route path="/ticket/:id" element=<TicketSingle /> />
 
-          <Route path="/adicionar/" element=<TicketAddNew /> />
+          <Route path="/adicionar/" element=<TicketAdd /> />
 
           {/* <Route path="/" element=<Home /> /> */}
           {<Route path="/pedidos/" element=<TicketNearby /> />}

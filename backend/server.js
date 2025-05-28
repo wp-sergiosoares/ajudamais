@@ -11,6 +11,8 @@ const path = require("path");
 // express app
 const app = express();
 
+const port = process.env.PORT || 4000;
+
 // middleware
 app.use(express.json());
 
@@ -52,7 +54,7 @@ mongoose
   .then(() => {
     // listen for requests
     app.listen(process.env.PORT, () => {
-      console.log("connected to db & listening on port 4000");
+      console.log(`connected to db & listening on port ${port}`);
     });
   })
   .catch((error) => {
