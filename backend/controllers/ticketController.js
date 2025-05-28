@@ -94,14 +94,21 @@ const getSingleTicket = async (req, res) => {
 const createTicket = async (req, res) => {
   //const { description, typeOfTicket, status, location } = req.body;
 
-  const { typeOfTicket, description, status, location, category } = req.body;
+  const {
+    typeOfTicket,
+    description,
+    status,
+    location,
+    category,
+    formaContacto,
+  } = req.body;
 
   // // Verificação simples
   // if (!typeOfTicket || !description) {
   //   return res.status(400).json({ message: "Campos obrigatórios faltando." });
   // }
 
-  if (!typeOfTicket || !description || !category) {
+  if (!typeOfTicket || !description || !category || !formaContacto) {
     return res.status(400).json({ error: "Campos obrigatórios em falta" });
   }
 
@@ -122,6 +129,7 @@ const createTicket = async (req, res) => {
       status,
       category,
       user_id,
+      formaContacto,
       location: {
         type: "Point",
         coordinates: [lon, lat], // MongoDB espera [longitude, latitude]
@@ -154,11 +162,7 @@ const editTicket = async (req, res) => {
     updateData.description = description;
   }
   if (category) {
-    const categoryNormalizada = category
-      .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "")
-      .toLowerCase();
-    updateData.category = categoryNormalizada;
+    updateData.category = category;
   }
   if (status) {
     updateData.status = status.toLowerCase();

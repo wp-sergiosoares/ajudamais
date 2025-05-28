@@ -17,13 +17,17 @@ const ticketSchema = new Schema(
       required: true,
     },
     category: {
-      type: [String],
+      type: String,
       required: true,
     },
     status: {
       type: String,
       required: true,
       default: "ativo",
+    },
+    formaContacto: {
+      type: String,
+      required: true,
     },
     location: {
       type: {
