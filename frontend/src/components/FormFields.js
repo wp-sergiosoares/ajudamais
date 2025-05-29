@@ -45,16 +45,18 @@ const FormFields = () => {
             />
           </div>
 
-          <DescriptionField
-            disabled={isLoading}
-            value={formData.description}
-            onChange={(e) =>
-              setFormData({ ...formData, description: e.target.value })
-            }
-            placeholder={
-              "Ex. Preciso de roupas de bébé. Agradecia toda a ajuda possível."
-            }
-          />
+          <div className="form-fields">
+            <DescriptionField
+              disabled={isLoading}
+              value={formData.description}
+              onChange={(e) =>
+                setFormData({ ...formData, description: e.target.value })
+              }
+              placeholder={
+                "Ex. Preciso de roupas de bébé. Agradecia toda a ajuda possível."
+              }
+            />
+          </div>
 
           <div className="form-fields">
             <ContactFieldPhone
@@ -65,7 +67,6 @@ const FormFields = () => {
               validInputPhone={validInputPhone}
               phoneError={phoneError}
             />
-            <div className="form-field"></div>
           </div>
 
           {/* <div className="form-field form-field-radio">

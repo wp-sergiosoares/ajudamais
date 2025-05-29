@@ -48,7 +48,7 @@ function App() {
 
           {/* <Route path="/messages" element=<Messages /> /> */}
 
-          {/* <Route path="/perfil" element=<UserProfile /> /> */}
+          {/* <Route path="/perfil/" element=<UserProfile /> /> */}
           {/* <Route path="/user/:id" element=<UserProfile /> /> */}
           {/* <Route path="/all-users/" element=<UserListAll /> /> */}
 

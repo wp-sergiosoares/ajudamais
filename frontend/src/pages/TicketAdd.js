@@ -36,12 +36,14 @@ const TicketAddNew = () => {
           <div className="info-panel-text">
             Para pedir ou oferecer ajuda, por favor faça login na sua conta.
           </div>
-          <Link to="/login" className="btn btn-small btn-secondary">
-            Iniciar Sessão
-          </Link>
-          <Link to="/signup" className="btn btn-small btn-secondary">
-            Criar Conta
-          </Link>
+          <div className="info-panel-buttons">
+            <Link to="/login" className="btn btn-small btn-secondary">
+              Iniciar Sessão
+            </Link>
+            <Link to="/signup" className="btn btn-small btn-secondary">
+              Criar Conta
+            </Link>
+          </div>
         </div>
       )}
     </div>

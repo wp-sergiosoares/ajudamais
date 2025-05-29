@@ -47,7 +47,7 @@ const TicketNearby = () => {
 
         <div className="ticket-info">
           {tickets.length === 0 && (
-            <p>Nenhum ticket encontrado a {distanceFilter} metros.</p>
+            <p>Nenhum resultado encontrado a {distanceFilter} metros.</p>
           )}
 
           {tickets.length > 0 && (

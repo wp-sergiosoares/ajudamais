@@ -113,31 +113,12 @@ header a {
 
 
 
-
-
-input, select {
-  padding: 10px;
-  margin-top:10px;
-  margin-bottom: 10px;
-  width: auto;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  box-sizing: border-box;
-}
-
-
-
-select {
-  margin:0;  
-}
-
-
 form button {
   background: var(--primary);
   border:0;
   color: #fff;
-  padding: 10px;
-  border-radius: 4px;
+  padding: 10px 15px;
+  border-radius: 5px;
   cursor: pointer;
 }
 
@@ -192,6 +173,11 @@ form.signup, form.login {
   padding: 6px 10px;
   margin: 0;
   font-weight: 500;
+}
+
+footer .menu li a {
+  border:none;
+  text-decoration: none;
 }
 
 
@@ -363,7 +349,7 @@ form.signup, form.login {
 
 .ticket-date {
   font-size: 0.8rem;
-  color:#999;
+  color:gray;
   font-style: italic;
 }
 
@@ -456,31 +442,14 @@ form.signup, form.login {
 }
 
 .form-action {
-  display: flex;
-  gap:5px;
-  align-items: center;
-  justify-content: center;
-  margin-top: 20px;
+  margin-block-start: 20px;
 }
 
 
 
-
-
-
-
-
-
-.form-add-inputs {
-  box-sizing: content-box;
-  position: relative;
-}
-
-
-
-.form-add-inputs select,
-.form-add-inputs textarea,
-.form-add-inputs input {
+select,
+textarea,
+input {
   border:var(--text-color) solid 1px;
   border-radius: 5px;
   box-shadow: 2.5px 3px 0 var(--text-color);
@@ -493,18 +462,16 @@ form.signup, form.login {
   color: var(--text-color);
   width: 100%;
   box-sizing: border-box;
-  margin:0;
+  margin-block:10px;
   padding-right: 40px;
 }
 
 
-.form-add-inputs textarea {
+.form-field textarea {
   display: block;
   width: 100%;
   box-sizing: border-box;
 }
-
-
 
 .form-fields {
   display: flex;
@@ -514,12 +481,12 @@ form.signup, form.login {
 .form-field {
   font-size: 0.8rem;
   flex: 1;
+  margin-block: 10px;
 }
 
 .form-field span {
   display: block;
-  margin-bottom: 5px;
-  margin-top: 10px;
+  margin:0;
   color: gray;
   margin-left: 5px;
 }
@@ -712,7 +679,7 @@ h2 {
   padding: 10px;
   color: var(--text-color);
   border: #dba753 solid 1px;
-  
+  box-shadow: none;
 }
 
 .filtro-item label {
@@ -1055,7 +1022,8 @@ footer a {
 /* navbar */
 
 
-nav button {
+nav button,
+nav a {
   background:transparent;
   color: var(--text-color);
   border: 2px solid var(--text-color);
@@ -1069,24 +1037,21 @@ nav button {
 form.signup, form.login {
   max-width: 400px;
   margin: 40px auto;
-  padding: 20px;
+  padding: 40px 20px;
   background: #fff;
   border-radius: 4px;
+  border: var(--text-color) solid 1px;
+  border-radius: 5px;
 }
 
+form.signup h3, form.login h3 {
+  margin-top:0;
+}
 
 label, input {
   display: block;
 }
-input {
-  padding: 10px;
-  margin-top: 10px;
-  margin-bottom: 20px;
-  width: 100%;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  box-sizing: border-box;
-}
+
 
 
 
@@ -1145,6 +1110,11 @@ input {
 
 .info-panel-text {
   margin-bottom: 30px;
+}
+
+.info-panel-buttons {
+  display: flex;
+  gap:10px
 }
 
 
@@ -1219,9 +1189,6 @@ form .valid input {
   margin-left: 15px;
 }
 
-.form-add-inputs .radio-fields .form-field {
-  
-}
 
 
 
@@ -1287,5 +1254,7 @@ form .valid input {
   .card-items {
     flex-direction: column;
   }
-
+  .single-ticket {
+    margin-inline: 20px;
+  }
 }

@@ -7,50 +7,25 @@ import { useTicketsContext } from "../hooks/useTicketsContext";
 
 import { formatRelative, subDays } from "date-fns";
 
-import {
-  ShoppingBasket,
-  HandHeart,
-  HeartHandshake,
-  Briefcase,
-  PawPrint,
-  AlertTriangle,
-  Car,
-  Facebook,
-} from "lucide-react";
-
 const UserProfile = () => {
-  const categoryIcons = {
-    transporte_solidario: <Car size={24} color="9C27B0" />,
-    necessidades_basicas: <ShoppingBasket size={24} color="green" />,
-    cuidados_e_apoio: <HandHeart size={24} color="pink" />,
-    servicos_e_trabalho: <Briefcase size={24} color="blue" />,
-    seguranca_alertas: <AlertTriangle size={24} color="red" />,
-    animais: <PawPrint size={24} color="orange" />,
-    outros: <span class="material-symbols-outlined">handyman</span>,
-  };
-
-  const getIconByCategory = (cat) => {
-    return categoryIcons[cat] || <HeartHandshake size={64} color="#4E978A" />;
-  };
-
   const { tickets, dispatch } = useTicketsContext();
 
   // console.log(tickets);
-
   const { user } = useAuthContext();
-  const token = user.token;
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    if (!user) return;
     const getTickets = async () => {
       setLoading(true);
+
       try {
         const res = await fetch("/api/tickets/", {
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${user.token}`,
           },
         });
         if (!res.ok) throw new Error("Erro ao carregar dados");
@@ -64,10 +39,11 @@ const UserProfile = () => {
     };
 
     getTickets();
-  }, [dispatch]);
+  }, [user, dispatch]);
 
   const handleDelete = async (e, id) => {
     e.preventDefault();
+
     try {
       const response = await fetch(`/api/tickets/${id}`, {
         method: "DELETE",
@@ -93,8 +69,6 @@ const UserProfile = () => {
     }
   };
 
-  const [fadeOutIds, setFadeOutIds] = useState([]);
-
   const handleConcluido = async (e, id) => {
     e.preventDefault();
 
@@ -117,7 +91,13 @@ const UserProfile = () => {
     }
   };
 
-  console.log(tickets);
+  // console.log(tickets);
+
+  // console.log(user);
+
+  if (!user) {
+    return <div>A carregar utilizador...</div>;
+  }
 
   return (
     <div className="page-center">
@@ -129,13 +109,10 @@ const UserProfile = () => {
       {tickets && (
         <ul className="ticket-list ticket-list-user">
           {tickets.map((ticket) => (
-            <li
-              key={ticket._id}
-              className={fadeOutIds.includes(ticket._id) ? "fade-out" : ""}
-            >
+            <li key={ticket._id}>
               <div className="ticket-container">
                 <div className="ticket-icon">
-                  {getIconByCategory(ticket.category)}
+                  {/* {getIconByCategory(ticket.category)} */}
                 </div>
                 <div className="ticket-content">
                   <div className="ticket-header">
