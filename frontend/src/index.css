@@ -505,7 +505,7 @@ form.signup, form.login {
 .form-add-inputs select,
 .form-add-inputs textarea,
 .form-add-inputs input {
-  border:var(--text-color) solid 1.5px;
+  border:var(--text-color) solid 1px;
   border-radius: 5px;
   box-shadow: 2.5px 3px 0 var(--text-color);
   outline: none;
@@ -1101,7 +1101,7 @@ form.signup, form.login {
   border-radius: 4px;
 }
 
-/* new workout form */
+
 label, input {
   display: block;
 }
@@ -1160,6 +1160,13 @@ input {
   border-radius: 5px;
 }
 
+.info-panel.no-bg {
+  background: none;
+  border:none;
+  border-radius: none;
+  text-align: center;
+}
+
 .info-panel h3 {
   margin:0;
   margin-bottom:20px;
@@ -1202,6 +1209,29 @@ input {
 
   }
 }
+
+.form-field label {
+  position: relative;
+}
+
+.form-field .tick {
+  opacity: 0;
+  color: var(--primary);
+  transition: all 0.3s;
+  position: absolute;
+  top:40px;right:10px;
+}
+
+.valid .tick {
+  opacity: 1;
+  transform: translateY(-10px);
+}
+
+form .valid input {
+  border-color: var(--primary);
+  outline-color: var(--primary);
+}
+
 
 
 @media (max-width: 480px) {

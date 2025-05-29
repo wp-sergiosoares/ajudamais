@@ -22,6 +22,24 @@ const FormFields = () => {
   const { dispatch } = useTicketsContext();
   const { location, locationError } = useGeolocation();
 
+  const [validInput, setValidInput] = useState(false);
+
+  const hadleEmailInput = (e) => {
+    const value = e.target.value;
+
+    setFormData({
+      ...formData,
+      formaContacto: value,
+    });
+
+    const emailRegex =
+      /^([A-Za-z\d\.-]+)@([A-Za-z\d-]+)\.([A-Za-z]{2,6})(\.[A-Za-z]{2,6})?$/;
+
+    const phoneRegex = /^\+?[0-9\s\-()]{9}$/;
+
+    setValidInput(emailRegex.test(value) || phoneRegex.test(value));
+  };
+
   const validateForm = () => {
     if (!formData.description || !formData.type || !formData.category) {
       setError("por favor, preencha todos os campos obrigatórios.");
@@ -152,21 +170,24 @@ const FormFields = () => {
           </div>
 
           <div className="form-fields">
-            <div className="form-field">
+            <div className={`form-field ${validInput && "valid"}`}>
               <label>
                 <span>Como prefere ser contactado?</span>
                 <input
                   type="text"
                   id="contacto"
                   placeholder="Número de telemóvel ou email..."
-                  onChange={(e) =>
-                    setFormData({
-                      ...formData,
-                      formaContacto: e.target.value,
-                    })
-                  }
+                  // onChange={(e) =>
+                  //   setFormData({
+                  //     ...formData,
+                  //     formaContacto: e.target.value,
+                  //   })
+                  // }
+                  onChange={(e) => hadleEmailInput(e)}
                   value={formData.formaContacto}
                 />
+
+                <span className="tick material-symbols-outlined">check</span>
               </label>
               <span>Pode indicar um número de telefone ou e-mail.</span>
             </div>
@@ -187,6 +208,13 @@ const FormFields = () => {
           </div>
         </div>
       </form>
+
+      <div className="info-panel no-bg">
+        <p>
+          Através da tua descrição irá ser gerado um pequeno título com recurso
+          a inteligência artificial.
+        </p>
+      </div>
 
       {createdTicket && (
         <div className="success-message">
