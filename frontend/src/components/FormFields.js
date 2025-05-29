@@ -18,7 +18,6 @@ const FormFields = () => {
     handlePhoneInput,
     contactoError,
     phoneError,
-    tempEmail,
     tempPhone,
     emailTouched,
     phoneTouched,
@@ -67,7 +66,7 @@ const FormFields = () => {
             <ContactFieldEmail
               placeholder="Email..."
               onChange={(e) => handleEmailInput(e)}
-              value={tempEmail}
+              value={formData.email}
               emailTouched={emailTouched}
               validInputEmail={validInputEmail}
               contactoError={contactoError}
@@ -75,7 +74,7 @@ const FormFields = () => {
             <ContactFieldPhone
               placeholder="Número de telemóvel..."
               onChange={(e) => handlePhoneInput(e)}
-              value={tempPhone}
+              value={formData.phone}
               phoneTouched={phoneTouched}
               validInputPhone={validInputPhone}
               phoneError={phoneError}

@@ -34,19 +34,16 @@ export const useFormFields = () => {
 
   const handleEmailInput = (e) => {
     let value = e.target.value;
-    setTempEmail(value);
+    //setTempEmail(value);
     setEmailTouched(true);
+    setFormData({ ...formData, email: value });
 
     const emailRegex =
       /^([A-Za-z\d\.-]+)@([A-Za-z\d-]+)\.([A-Za-z]{2,6})(\.[A-Za-z]{2,6})?$/;
-    const phoneRegex = /^(\+351)?\s?(\d{3})[\s.-]?(\d{3})[\s.-]?(\d{3})$/;
 
-    if (emailRegex.test(value) || phoneRegex.test(value)) {
+    if (emailRegex.test(value)) {
       setValidInputEmail(true);
       setEmailError("");
-      setFormData({ ...formData, email: value });
-
-      console.log(formData.email);
     } else {
       setValidInputEmail(false);
       setEmailError("Introduza um email válido.");
@@ -56,16 +53,15 @@ export const useFormFields = () => {
 
   const handlePhoneInput = (e) => {
     let value = e.target.value;
-    setTempPhone(value);
+    //setTempPhone(value);
     setPhoneTouched(true);
+    setFormData({ ...formData, phone: value });
 
     const phoneRegex = /^(\+351)?\s?(\d{3})[\s.-]?(\d{3})[\s.-]?(\d{3})$/;
 
     if (phoneRegex.test(value)) {
       setValidInputPhone(true);
       setPhoneError("");
-      setFormData({ ...formData, phone: value });
-      console.log(formData.phone);
     } else {
       setValidInputPhone(false);
       setPhoneError("Introduza um número de telefone válido.");
