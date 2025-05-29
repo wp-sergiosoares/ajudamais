@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const HomeComoFunciona = () => {
   return (
     <div className="section section-como-funciona">
@@ -34,10 +36,10 @@ const HomeComoFunciona = () => {
         </div>
 
         <div className="section-footer">
-          <button className="btn btn-primary">
+          <Link className="btn btn-primary" to="/">
             <span className="material-symbols-outlined">favorite</span>
             Vamos fazer a diferença
-          </button>
+          </Link>
         </div>
       </div>
     </div>

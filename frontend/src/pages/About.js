@@ -2,7 +2,7 @@ import HomeComoFunciona from "../components/HomeComoFunciona";
 import HomeHero from "../components/HomeHero";
 import HomeUltimosPedidos from "../components/HomeUltimosPedidos";
 
-const Home = () => {
+const About = () => {
   return (
     <div className="pages-wrapper">
       <HomeHero />
@@ -14,4 +14,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default About;

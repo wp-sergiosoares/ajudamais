@@ -955,18 +955,17 @@ letter-spacing: 0.3rem;
   flex:2;
 }
 .hero-section-text h2 {
-  font-size: 3.5rem;
   font-weight: 500;
   color:var(--backgroud-color);
-  
+  font-size: clamp(2rem, 5vw, 3.5rem);
 }
 
 .hero-section-text p {
-  font-size: 1.8rem;
   font-weight: 300;
   margin-top: 20px;
   margin-bottom: 50px;
   color: var(--backgroud-color);
+  font-size: clamp(1.2rem, 5vw, 1.8rem);
 }
 .hero-section-image {
   flex: 1.5;
@@ -1042,9 +1041,17 @@ footer {
   margin-top: 20px;
 }
 
+footer .container {
+  align-items: center;
+}
+
 footer p {
   margin:10px 0;
   text-align: center;
+}
+
+footer a {
+  color: var(--text-color);
 }
 
 .contact-container {
@@ -1240,4 +1247,24 @@ input {
     align-items: center;
     padding: 20px;
   }
+
+  .section-hero .container {
+    width: auto;
+  }
+  .pages-wrapper {
+    margin: 10px;
+  }
+  .pages-wrapper .container {
+    padding: 10px;
+  }
+  .hero-section-image {
+    display: none;
+  }
+  .buttons {
+    flex-direction: column;
+  }
+  .card-items {
+    flex-direction: column;
+  }
+
 }

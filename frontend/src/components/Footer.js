@@ -10,7 +10,7 @@ const Footer = () => {
         <nav>
           <ul className="menu">
             <li>
-              <Link to="/">Sobre o Ajuda +</Link>
+              <Link to="/sobre-o-ajuda-mais/">Sobre o Ajuda +</Link>
             </li>
           </ul>
         </nav>

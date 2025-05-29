@@ -14,7 +14,7 @@ const Navbar = () => {
     <header>
       <div className="container">
         <div className="logo">
-          <Link to="/lista-pedidos/">
+          <Link to="/">
             <h1>
               Ajuda <span>+</span>
             </h1>

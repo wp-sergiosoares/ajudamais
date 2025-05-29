@@ -3,7 +3,7 @@ import { useAuthContext } from "./hooks/useAuthContext";
 
 // pages
 
-import Home from "./pages/Home";
+import About from "./pages/About";
 
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
@@ -38,12 +38,12 @@ function App() {
             element={user ? <Home /> : <Navigate to="/login" />}
           /> */}
 
-          <Route path="/" element=<Home /> />
+          <Route path="/sobre-o-ajuda-mais/" element=<About /> />
 
           <Route path="/adicionar/" element=<TicketAdd /> />
 
           {/* <Route path="/" element=<Home /> /> */}
-          {<Route path="/lista-pedidos/" element=<TicketNearby /> />}
+          {<Route path="/" element=<TicketNearby /> />}
           {<Route path="/pedido/:id" element=<TicketSingle /> />}
 
           {/* <Route path="/messages" element=<Messages /> /> */}
