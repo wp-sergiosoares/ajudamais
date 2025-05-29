@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useNavigate } from "react-router";
 
 import { useTicketNearBy } from "../hooks/useTicketNearBy";
@@ -40,13 +40,17 @@ const TicketSingle = () => {
   return (
     <div className="page-center page-center-small">
       <div className="page-header">
-        <h1>Detalhes</h1>
+        {ticket.typeOfTicket === "pedido" ? (
+          <h1>Pedido de ajuda</h1>
+        ) : (
+          <h1>Ofereço para</h1>
+        )}
 
         <button
           onClick={() => navigate(-1)}
           className="btn btn-small btn-secondary"
         >
-          <span class="material-symbols-outlined">keyboard_arrow_left</span>
+          <span className="material-symbols-outlined">keyboard_arrow_left</span>
         </button>
       </div>
 
@@ -56,22 +60,29 @@ const TicketSingle = () => {
             {getCategoryLabel(ticket.category)}
           </span>
           <span>{ticket.cidade}</span>
-          <span>{ticket.distance}</span>
+          {/* <span>{ticket.distance}</span> */}
         </div>
         <div className="ticket-title">{ticket.title}</div>
         <div className="ticket-description">{ticket.description}</div>
 
         {ticket.email && (
           <div className="ticket-action">
-            <span>O Autor do pedido deixou um contacto</span>
-            <button className="btn btn-primary">{ticket.email}</button>
+            Ajuda já!
+            <Link
+              to={`mailto:${ticket.email}`}
+              className="btn btn-normal btn-secondary"
+            >
+              {ticket.email}
+            </Link>
           </div>
         )}
 
         {ticket.phone && (
           <div className="ticket-action">
             <span>O Autor do pedido deixou um contacto</span>
-            <button className="btn btn-primary">{ticket.phone}</button>
+            <button className="btn btn-small btn-secondary">
+              {ticket.phone}
+            </button>
           </div>
         )}
       </div>

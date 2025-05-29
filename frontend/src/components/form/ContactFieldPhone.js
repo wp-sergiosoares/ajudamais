@@ -13,21 +13,15 @@ const ContactFieldPhone = ({
       }`}
     >
       <label>
-        <span>Quero ser contactado por:</span>
+        <span>Aceito ser contactado pelo nr:</span>
         <input
           type="text"
           id="phone"
           placeholder={placeholder}
-          // onChange={(e) =>
-          //   setFormData({
-          //     ...formData,
-          //     formaContacto: e.target.value,
-          //   })
-          // }
           onChange={onChange}
           value={value}
         />
-
+        <span>Ex. 91xxxxxxx</span>
         <span className="tick material-symbols-outlined">check</span>
       </label>
 

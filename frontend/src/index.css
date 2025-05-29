@@ -460,7 +460,7 @@ form.signup, form.login {
   gap:5px;
   align-items: center;
   justify-content: center;
-  margin-top: 0;
+  margin-top: 20px;
 }
 
 
@@ -505,20 +505,6 @@ form.signup, form.login {
 }
 
 
-/* .form-add-inputs textarea {
-  display: block;
-  
-  background-color: #fff;
-  border-radius: 10px;
-  padding: 10px;
-  font-size: 0.8rem;
-  overflow: auto;
-  font-family: "Inter", sans-serif;
-  margin: 0;
-  border:var(--secondary) solid 1px;
-  color: var(--text-color);
-} */
-
 
 .form-fields {
   display: flex;
@@ -532,9 +518,10 @@ form.signup, form.login {
 
 .form-field span {
   display: block;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
   margin-top: 10px;
   color: gray;
+  margin-left: 5px;
 }
 
 .form-field-radio input {
@@ -639,9 +626,9 @@ form.signup, form.login {
 
 .ticket-description {
   margin-bottom: 20px;
-  color: #999;
+  color: gray;
   font-size: 0.9rem;
-  line-height: 1.3rem;
+  line-height: 1.4rem;
 }
 
 
@@ -676,8 +663,13 @@ form.signup, form.login {
 
 
 .ticket-action {
- margin-left: 20px;
- margin-top: 10px;
+
+ margin-top: 20px;
+ margin-bottom: 0;
+}
+
+.ticket-action .btn {
+  margin-left: 10px;
 }
 
 .ticket-action span {margin-right: 5px;}
@@ -968,6 +960,7 @@ letter-spacing: 0.3rem;
   line-height: 1;
   will-change: transform;
   text-decoration: none;
+  display: inline-block;
 }
 
 .btn-small {
@@ -1101,7 +1094,6 @@ input {
   background-color: #fff;
   padding: 2rem;
   border:var(--text-color) solid 1px;
-  text-align: center;
   border-radius: 5px;
 }
 
@@ -1113,7 +1105,6 @@ input {
 .ticket-details {
   display: flex;
   align-items: center;
-  justify-content: center;
 }
 
 .ticket-action span {
@@ -1199,7 +1190,8 @@ input {
   color: var(--primary);
   transition: all ease-in 0.3s;
   position: absolute;
-  top:40px;right:10px;
+  top:45px;right:10px;
+  margin:0;
 }
 
 .valid .tick {
@@ -1215,6 +1207,20 @@ input {
 form .valid input {
   border-color: var(--primary);
   outline-color: var(--primary);
+}
+
+.form-add-inputs .radio-fields input {
+  width: auto;
+  display: inline-block;
+}
+
+.form-add-inputs .radio-fields label {
+  display: inline-block;
+  margin-left: 15px;
+}
+
+.form-add-inputs .radio-fields .form-field {
+  
 }
 
 

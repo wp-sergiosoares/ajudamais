@@ -18,6 +18,8 @@ export const useFormFields = () => {
     phone: "",
   });
 
+  const userEmail = user.email;
+
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [createdTicket, setCreatedTicket] = useState(null);
@@ -31,6 +33,14 @@ export const useFormFields = () => {
   const [phoneError, setPhoneError] = useState("");
   const [phoneTouched, setPhoneTouched] = useState(false);
   const [tempPhone, setTempPhone] = useState("");
+
+  const [selectedOption, setSelectedOption] = useState("");
+
+  const handleRadio = (e) => {
+    setSelectedOption(e.target.value);
+  };
+
+  console.log(selectedOption);
 
   const handleEmailInput = (e) => {
     let value = e.target.value;
@@ -70,18 +80,8 @@ export const useFormFields = () => {
   };
 
   const validateForm = () => {
-    if (
-      !formData.description ||
-      !formData.type ||
-      !formData.category ||
-      (!formData.email && !formData.phone)
-    ) {
+    if (!formData.description || !formData.type || !formData.category) {
       setError("Por favor, preencha todos os campos obrigatórios.");
-      return false;
-    }
-
-    if (!validInputEmail && !validInputPhone) {
-      setError("Por favor, introduza um contacto válido (email ou telefone).");
       return false;
     }
 
@@ -107,7 +107,7 @@ export const useFormFields = () => {
       typeOfTicket: formData.type,
       description: formData.description,
       location,
-      email: formData.email,
+      email: userEmail,
       phone: formData.phone,
       category: formData.category,
     };
@@ -176,5 +176,8 @@ export const useFormFields = () => {
     error,
     isLoading,
     createdTicket,
+    handleRadio,
+    selectedOption,
+    setSelectedOption,
   };
 };

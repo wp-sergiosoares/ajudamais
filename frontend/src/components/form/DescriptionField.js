@@ -8,7 +8,7 @@ const DescriptionField = ({ disabled, value, onChange, placeholder }) => {
           id="description"
           value={value}
           onChange={onChange}
-          rows={3}
+          rows={5}
           style={{ overflow: "hidden", resize: "none" }}
           placeholder={placeholder}
         />

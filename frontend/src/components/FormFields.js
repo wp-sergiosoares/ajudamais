@@ -4,7 +4,6 @@ import { useFormFields } from "../hooks/useFormFields";
 import TypeSelector from "./form/TypeSelector";
 import CategorySelector from "./form/CategorySelector";
 import DescriptionField from "./form/DescriptionField";
-import ContactFieldEmail from "./form/ContactFieldEmail";
 import ContactFieldPhone from "./form/ContactFieldPhone";
 
 const FormFields = () => {
@@ -14,13 +13,9 @@ const FormFields = () => {
     handleAddTicket,
     formData,
     setFormData,
-    handleEmailInput,
     handlePhoneInput,
-    contactoError,
     phoneError,
-    emailTouched,
     phoneTouched,
-    validInputEmail,
     validInputPhone,
     error,
     isLoading,
@@ -62,14 +57,6 @@ const FormFields = () => {
           />
 
           <div className="form-fields">
-            <ContactFieldEmail
-              placeholder="Email..."
-              onChange={(e) => handleEmailInput(e)}
-              value={formData.email}
-              emailTouched={emailTouched}
-              validInputEmail={validInputEmail}
-              contactoError={contactoError}
-            />
             <ContactFieldPhone
               placeholder="Número de telemóvel..."
               onChange={(e) => handlePhoneInput(e)}
@@ -78,6 +65,7 @@ const FormFields = () => {
               validInputPhone={validInputPhone}
               phoneError={phoneError}
             />
+            <div className="form-field"></div>
           </div>
 
           {/* <div className="form-field form-field-radio">

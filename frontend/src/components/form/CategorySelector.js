@@ -2,7 +2,7 @@ const CategorySelector = ({ disabled, value, onChange, categorias }) => {
   return (
     <div className="form-field">
       <label>
-        <span>Categorias *</span>
+        <span>Selecione o tipo de ajuda: *</span>
 
         <select
           disabled={disabled}
@@ -10,7 +10,7 @@ const CategorySelector = ({ disabled, value, onChange, categorias }) => {
           value={value}
           onChange={onChange}
         >
-          <option value="">Todas as Categorias</option>
+          <option value="">Selecione uma categoria</option>
           {categorias.map((cat, index) => (
             <option key={index} value={cat.id}>
               {cat.nome}
