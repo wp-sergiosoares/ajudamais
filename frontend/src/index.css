@@ -147,7 +147,14 @@ div.error {
   border: 1px solid var(--error);
   color: var(--error);
   border-radius: 4px;
-  margin:0;
+  margin:10px 0;
+  font-size: 0.8rem;
+}
+
+div.error.no-bg {
+  background-color: transparent;
+  border:none;
+  padding: 0;
 }
 
 input.error {
@@ -461,39 +468,8 @@ form.signup, form.login {
 
 
 
-.overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(255, 255, 255, 0.85);
-  display: flex;
-  align-items: center;
-  justify-content:center;
-  z-index: 1000;
-}
 
-.modal {
-  background:var(--backgroud-color);
-  border-radius: 8px;
-  width: 400px;
-  position: relative;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-  overflow: hidden;
-}
 
-.btn-close {
-  position: absolute;
-  top:17px;
-  right: 14px;
-  background: none;
-  border:none;
-  font-size: 1.5rem;
-  cursor: pointer;
-  z-index: 10;
-  color: var(--backgroud-color);
-}
 
 .form-add-inputs {
   box-sizing: content-box;
@@ -1217,7 +1193,7 @@ input {
 .form-field .tick {
   opacity: 0;
   color: var(--primary);
-  transition: all 0.3s;
+  transition: all ease-in 0.3s;
   position: absolute;
   top:40px;right:10px;
 }
@@ -1226,6 +1202,11 @@ input {
   opacity: 1;
   transform: translateY(-10px);
 }
+
+.form-field.invalid input {
+  border: 1px solid red;
+}
+
 
 form .valid input {
   border-color: var(--primary);

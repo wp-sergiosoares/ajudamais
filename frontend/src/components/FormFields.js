@@ -4,6 +4,13 @@ import { useGeolocation } from "../hooks/useGeolocation";
 import { useTicketsContext } from "../hooks/useTicketsContext";
 import { useAuthContext } from "../hooks/useAuthContext";
 
+// componentes
+
+import TypeSelector from "./form/TypeSelector";
+import CategorySelector from "./form/CategorySelector";
+import DescriptionField from "./form/DescriptionField";
+import ContactField from "./form/ContactField";
+
 const FormFields = () => {
   const { categorias } = useInfo();
 
@@ -23,28 +30,52 @@ const FormFields = () => {
   const { location, locationError } = useGeolocation();
 
   const [validInput, setValidInput] = useState(false);
+  const [contactoError, setContactoError] = useState("");
+  const [temp, setTemp] = useState("");
+  const [contactTouched, setContactTouched] = useState(false);
 
-  const hadleEmailInput = (e) => {
+  const handleEmailInput = (e) => {
     const value = e.target.value;
 
-    setFormData({
-      ...formData,
-      formaContacto: value,
-    });
+    setTemp(value);
+    setContactTouched(true); // agora sabemos que o usuário tocou no campo
 
     const emailRegex =
       /^([A-Za-z\d\.-]+)@([A-Za-z\d-]+)\.([A-Za-z]{2,6})(\.[A-Za-z]{2,6})?$/;
 
     const phoneRegex = /^\+?[0-9\s\-()]{9}$/;
 
-    setValidInput(emailRegex.test(value) || phoneRegex.test(value));
+    //setValidInput(emailRegex.test(value) || phoneRegex.test(value));
+
+    if (emailRegex.test(value)) {
+      setValidInput(true);
+      setContactoError("");
+      setFormData({ ...formData, formaContacto: value });
+    } else {
+      setValidInput(false);
+      setContactoError("Introduza um email ou número de telefone válido.");
+      setFormData({ ...formData, formaContacto: "" });
+    }
   };
 
+  console.log(formData.formaContacto);
+
   const validateForm = () => {
-    if (!formData.description || !formData.type || !formData.category) {
-      setError("por favor, preencha todos os campos obrigatórios.");
+    if (
+      !formData.description ||
+      !formData.type ||
+      !formData.category ||
+      !formData.formaContacto
+    ) {
+      setError("Por favor, preencha todos os campos obrigatórios.");
       return false;
     }
+
+    if (!validInput) {
+      setError("Por favor, introduza um contacto válido (email ou telefone).");
+      return false;
+    }
+
     return true;
   };
 
@@ -98,6 +129,11 @@ const FormFields = () => {
           formaContacto: "",
         });
 
+        setTemp("");
+        setContactTouched(false);
+        setValidInput(false);
+        setContactoError("");
+
         setIsLoading(false);
       }
     } catch (error) {
@@ -111,86 +147,44 @@ const FormFields = () => {
       <form onSubmit={handleAddTicket} className="form-add-inputs">
         <div className="form-content">
           <div className="form-fields">
-            <div className="form-field">
-              <label>
-                <span>O que pretende publicar?</span>
+            <TypeSelector
+              value={formData.type}
+              onChange={(e) =>
+                setFormData({ ...formData, type: e.target.value })
+              }
+              disabled={isLoading}
+            />
 
-                <select
-                  id="type"
-                  value={formData.type}
-                  onChange={(e) =>
-                    setFormData({ ...formData, type: e.target.value })
-                  }
-                  disabled={isLoading}
-                >
-                  <option value="">Selecione o tipo</option>
-                  <option value="pedido">Pedido</option>
-                  <option value="oferta">Oferta</option>
-                </select>
-              </label>
-            </div>
-            <div className="form-field">
-              <label>
-                <span>Categorias</span>
-
-                <select
-                  disabled={isLoading}
-                  id="category"
-                  value={formData.category}
-                  onChange={(e) =>
-                    setFormData({ ...formData, category: e.target.value })
-                  }
-                >
-                  <option value="">Todas as Categorias</option>
-                  {categorias.map((cat, index) => (
-                    <option key={index} value={cat.id}>
-                      {cat.nome}
-                    </option>
-                  ))}
-                </select>
-              </label>
-            </div>
+            <CategorySelector
+              value={formData.category}
+              onChange={(e) =>
+                setFormData({ ...formData, category: e.target.value })
+              }
+              disabled={isLoading}
+              categorias={categorias}
+            />
           </div>
 
-          <div className="form-field">
-            <label>
-              <span>Descreva o que precisa ou o que oferece</span>
-              <textarea
-                disabled={isLoading}
-                id="description"
-                value={formData.description}
-                onChange={(e) =>
-                  setFormData({ ...formData, description: e.target.value })
-                }
-                rows={3}
-                style={{ overflow: "hidden", resize: "none" }}
-                placeholder='Ex.: "Preciso de boleia para o centro médico"'
-              />
-            </label>
-          </div>
+          <DescriptionField
+            disabled={isLoading}
+            value={formData.description}
+            onChange={(e) =>
+              setFormData({ ...formData, description: e.target.value })
+            }
+            placeholder={
+              "Ex. Preciso de roupas de bébé. Agradecia toda a ajuda possível."
+            }
+          />
 
           <div className="form-fields">
-            <div className={`form-field ${validInput && "valid"}`}>
-              <label>
-                <span>Como prefere ser contactado?</span>
-                <input
-                  type="text"
-                  id="contacto"
-                  placeholder="Número de telemóvel ou email..."
-                  // onChange={(e) =>
-                  //   setFormData({
-                  //     ...formData,
-                  //     formaContacto: e.target.value,
-                  //   })
-                  // }
-                  onChange={(e) => hadleEmailInput(e)}
-                  value={formData.formaContacto}
-                />
-
-                <span className="tick material-symbols-outlined">check</span>
-              </label>
-              <span>Pode indicar um número de telefone ou e-mail.</span>
-            </div>
+            <ContactField
+              placeholder="Número de telemóvel ou email..."
+              onChange={(e) => handleEmailInput(e)}
+              value={temp}
+              contactTouched={contactTouched}
+              validInput={validInput}
+              contactoError={contactoError}
+            />
           </div>
 
           {/* <div className="form-field form-field-radio">
@@ -198,12 +192,29 @@ const FormFields = () => {
               <label htmlFor="radio">Quero permanecer anónimo</label>
             </div> */}
 
+          {error && <div className="error">{error}</div>}
+          {locationError && <div className="error">{locationError}</div>}
+
+          {createdTicket && (
+            <div className="success-message">
+              <p>
+                Pedido criado com sucesso!
+                <a
+                  href={`/pedido/${createdTicket._id}`}
+                  className="link-detalhes"
+                >
+                  Ver detalhes
+                </a>
+              </p>
+            </div>
+          )}
+
           <div className="form-action">
             <button
               disabled={isLoading}
               className="btn btn-primary btn-form-add"
             >
-              {isLoading ? <span>Enviando...</span> : <span>Enviar</span>}
+              {isLoading ? <span>A enviar...</span> : <span>Enviar</span>}
             </button>
           </div>
         </div>
@@ -215,20 +226,6 @@ const FormFields = () => {
           a inteligência artificial.
         </p>
       </div>
-
-      {createdTicket && (
-        <div className="success-message">
-          <p>
-            Pedido criado com sucesso!
-            <a href={`/pedido/${createdTicket._id}`} className="link-detalhes">
-              Ver detalhes
-            </a>
-          </p>
-        </div>
-      )}
-
-      {error && <div className="error">{error}</div>}
-      {locationError && <div className="error">{locationError}</div>}
     </div>
   );
 };

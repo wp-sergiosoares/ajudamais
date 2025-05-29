@@ -40,7 +40,7 @@ function App() {
 
           <Route path="/sobre-o-ajuda-mais/" element=<About /> />
 
-          <Route path="/adicionar/" element=<TicketAdd /> />
+          <Route path="/criar-novo-pedido/" element=<TicketAdd /> />
 
           {/* <Route path="/" element=<Home /> /> */}
           {<Route path="/" element=<TicketNearby /> />}

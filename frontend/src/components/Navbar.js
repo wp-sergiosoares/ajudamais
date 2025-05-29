@@ -30,7 +30,7 @@ const Navbar = () => {
             )} */}
 
             <li>
-              <Link to="/adicionar/">
+              <Link to="/criar-novo-pedido/">
                 <span>Pede ou Oferece Ajuda</span>
                 <span class="material-symbols-outlined">north</span>
               </Link>
