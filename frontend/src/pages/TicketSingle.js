@@ -61,10 +61,17 @@ const TicketSingle = () => {
         <div className="ticket-title">{ticket.title}</div>
         <div className="ticket-description">{ticket.description}</div>
 
-        {ticket.formaContacto && (
+        {ticket.email && (
           <div className="ticket-action">
             <span>O Autor do pedido deixou um contacto</span>
-            <button className="btn btn-primary">{ticket.formaContacto}</button>
+            <button className="btn btn-primary">{ticket.email}</button>
+          </div>
+        )}
+
+        {ticket.phone && (
+          <div className="ticket-action">
+            <span>O Autor do pedido deixou um contacto</span>
+            <button className="btn btn-primary">{ticket.phone}</button>
           </div>
         )}
       </div>

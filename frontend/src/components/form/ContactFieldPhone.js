@@ -1,22 +1,22 @@
-const ContactField = ({
-  contactTouched,
-  validInput,
+const ContactFieldPhone = ({
+  phoneTouched,
+  validInputPhone,
   placeholder,
   onChange,
-  contactoError,
+  phoneError,
   value,
 }) => {
   return (
     <div
       className={`form-field ${
-        contactTouched ? (validInput ? "valid" : "invalid") : ""
+        phoneTouched ? (validInputPhone ? "valid" : "invalid") : ""
       }`}
     >
       <label>
-        <span>Como prefere ser contactado?</span>
+        <span>Quero ser contactado por:</span>
         <input
           type="text"
-          id="contacto"
+          id="phone"
           placeholder={placeholder}
           // onChange={(e) =>
           //   setFormData({
@@ -31,9 +31,9 @@ const ContactField = ({
         <span className="tick material-symbols-outlined">check</span>
       </label>
 
-      {contactoError && <div className="error no-bg">{contactoError}</div>}
+      {phoneError && <div className="error no-bg">{phoneError}</div>}
     </div>
   );
 };
 
-export default ContactField;
+export default ContactFieldPhone;

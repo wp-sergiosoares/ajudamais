@@ -32,7 +32,7 @@ const Navbar = () => {
             <li>
               <Link to="/criar-novo-pedido/">
                 <span>Pede ou Oferece Ajuda</span>
-                <span class="material-symbols-outlined">north</span>
+                <span className="material-symbols-outlined">north</span>
               </Link>
             </li>
             {/* <li>

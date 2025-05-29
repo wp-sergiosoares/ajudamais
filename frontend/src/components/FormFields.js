@@ -1,146 +1,33 @@
-import { useState } from "react";
-import { useInfo } from "../context/InfoContext";
-import { useGeolocation } from "../hooks/useGeolocation";
-import { useTicketsContext } from "../hooks/useTicketsContext";
-import { useAuthContext } from "../hooks/useAuthContext";
-
 // componentes
 
+import { useFormFields } from "../hooks/useFormFields";
 import TypeSelector from "./form/TypeSelector";
 import CategorySelector from "./form/CategorySelector";
 import DescriptionField from "./form/DescriptionField";
-import ContactField from "./form/ContactField";
+import ContactFieldEmail from "./form/ContactFieldEmail";
+import ContactFieldPhone from "./form/ContactFieldPhone";
 
 const FormFields = () => {
-  const { categorias } = useInfo();
-
-  const { user } = useAuthContext();
-
-  const [formData, setFormData] = useState({
-    description: "",
-    type: "pedido",
-    category: "",
-    formaContacto: "",
-  });
-
-  const [error, setError] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
-  const [createdTicket, setCreatedTicket] = useState(null);
-  const { dispatch } = useTicketsContext();
-  const { location, locationError } = useGeolocation();
-
-  const [validInput, setValidInput] = useState(false);
-  const [contactoError, setContactoError] = useState("");
-  const [temp, setTemp] = useState("");
-  const [contactTouched, setContactTouched] = useState(false);
-
-  const handleEmailInput = (e) => {
-    const value = e.target.value;
-
-    setTemp(value);
-    setContactTouched(true); // agora sabemos que o usuário tocou no campo
-
-    const emailRegex =
-      /^([A-Za-z\d\.-]+)@([A-Za-z\d-]+)\.([A-Za-z]{2,6})(\.[A-Za-z]{2,6})?$/;
-
-    const phoneRegex = /^\+?[0-9\s\-()]{9}$/;
-
-    //setValidInput(emailRegex.test(value) || phoneRegex.test(value));
-
-    if (emailRegex.test(value)) {
-      setValidInput(true);
-      setContactoError("");
-      setFormData({ ...formData, formaContacto: value });
-    } else {
-      setValidInput(false);
-      setContactoError("Introduza um email ou número de telefone válido.");
-      setFormData({ ...formData, formaContacto: "" });
-    }
-  };
-
-  console.log(formData.formaContacto);
-
-  const validateForm = () => {
-    if (
-      !formData.description ||
-      !formData.type ||
-      !formData.category ||
-      !formData.formaContacto
-    ) {
-      setError("Por favor, preencha todos os campos obrigatórios.");
-      return false;
-    }
-
-    if (!validInput) {
-      setError("Por favor, introduza um contacto válido (email ou telefone).");
-      return false;
-    }
-
-    return true;
-  };
-
-  const handleAddTicket = async (e) => {
-    e.preventDefault();
-
-    setIsLoading(true);
-
-    if (!user) {
-      setError("You must be logged in");
-      return;
-    }
-
-    if (!validateForm()) return;
-
-    const ticket = {
-      typeOfTicket: formData.type,
-      description: formData.description,
-      location,
-      formaContacto: formData.formaContacto,
-      category: formData.category,
-    };
-
-    try {
-      const response = await fetch("/api/tickets/", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${user.token}`,
-        },
-        body: JSON.stringify(ticket),
-      });
-
-      const json = await response.json();
-
-      if (!response.ok) {
-        setError(json.message || "Erro ao criar ticket.");
-        return;
-      }
-
-      if (response.ok) {
-        console.log("JSON da resposta:", json);
-
-        setCreatedTicket(json);
-        dispatch({ type: "CREATE_TICKET", payload: json });
-
-        setFormData({
-          description: "",
-          type: "",
-          category: "",
-          formaContacto: "",
-        });
-
-        setTemp("");
-        setContactTouched(false);
-        setValidInput(false);
-        setContactoError("");
-
-        setIsLoading(false);
-      }
-    } catch (error) {
-      setError("Erro ao conectar com o servidor");
-      setIsLoading(false);
-    }
-  };
+  const {
+    categorias,
+    locationError,
+    handleAddTicket,
+    formData,
+    setFormData,
+    handleEmailInput,
+    handlePhoneInput,
+    contactoError,
+    phoneError,
+    tempEmail,
+    tempPhone,
+    emailTouched,
+    phoneTouched,
+    validInputEmail,
+    validInputPhone,
+    error,
+    isLoading,
+    createdTicket,
+  } = useFormFields();
 
   return (
     <div className="contact-container">
@@ -177,13 +64,21 @@ const FormFields = () => {
           />
 
           <div className="form-fields">
-            <ContactField
-              placeholder="Número de telemóvel ou email..."
+            <ContactFieldEmail
+              placeholder="Email..."
               onChange={(e) => handleEmailInput(e)}
-              value={temp}
-              contactTouched={contactTouched}
-              validInput={validInput}
+              value={tempEmail}
+              emailTouched={emailTouched}
+              validInputEmail={validInputEmail}
               contactoError={contactoError}
+            />
+            <ContactFieldPhone
+              placeholder="Número de telemóvel..."
+              onChange={(e) => handlePhoneInput(e)}
+              value={tempPhone}
+              phoneTouched={phoneTouched}
+              validInputPhone={validInputPhone}
+              phoneError={phoneError}
             />
           </div>
 

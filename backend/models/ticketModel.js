@@ -25,7 +25,11 @@ const ticketSchema = new Schema(
       required: true,
       default: "ativo",
     },
-    formaContacto: {
+    email: {
+      type: String,
+      required: true,
+    },
+    phone: {
       type: String,
       required: true,
     },

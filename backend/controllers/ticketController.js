@@ -100,7 +100,8 @@ const createTicket = async (req, res) => {
     status,
     location,
     category,
-    formaContacto,
+    email,
+    phone,
   } = req.body;
 
   // // Verificação simples
@@ -108,7 +109,7 @@ const createTicket = async (req, res) => {
   //   return res.status(400).json({ message: "Campos obrigatórios faltando." });
   // }
 
-  if (!typeOfTicket || !description || !category || !formaContacto) {
+  if (!typeOfTicket || !description || !category) {
     return res.status(400).json({ error: "Campos obrigatórios em falta" });
   }
 
@@ -129,7 +130,8 @@ const createTicket = async (req, res) => {
       status,
       category,
       user_id,
-      formaContacto,
+      email,
+      phone,
       location: {
         type: "Point",
         coordinates: [lon, lat], // MongoDB espera [longitude, latitude]
