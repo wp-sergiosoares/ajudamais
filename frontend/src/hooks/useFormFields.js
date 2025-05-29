@@ -24,7 +24,7 @@ export const useFormFields = () => {
 
   const [validInputEmail, setValidInputEmail] = useState(false);
   const [emailError, setEmailError] = useState("");
-  const [tempEmail, setTemp] = useState("");
+  const [tempEmail, setTempEmail] = useState("");
   const [emailTouched, setEmailTouched] = useState(false);
 
   const [validInputPhone, setValidInputPhone] = useState(false);
@@ -34,7 +34,7 @@ export const useFormFields = () => {
 
   const handleEmailInput = (e) => {
     let value = e.target.value;
-    setTemp(value);
+    setTempEmail(value);
     setEmailTouched(true);
 
     const emailRegex =
@@ -144,11 +144,15 @@ export const useFormFields = () => {
         email: "",
         phone: "",
       });
-      setTemp("");
+      setTempEmail("");
       setTempPhone("");
       setEmailTouched(false);
+      setPhoneTouched(false);
       setEmailError("");
+      setPhoneError("");
       setValidInputEmail(false);
+      setValidInputPhone(false);
+
       setError(null);
     } catch (err) {
       setError("Erro ao conectar com o servidor.");
@@ -156,9 +160,6 @@ export const useFormFields = () => {
       setIsLoading(false);
     }
   };
-
-  console.log(formData.email);
-  console.log(formData.phone);
 
   return {
     categorias,
