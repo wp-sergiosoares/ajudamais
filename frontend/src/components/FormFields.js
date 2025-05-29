@@ -18,7 +18,6 @@ const FormFields = () => {
     handlePhoneInput,
     contactoError,
     phoneError,
-    tempPhone,
     emailTouched,
     phoneTouched,
     validInputEmail,
@@ -91,15 +90,13 @@ const FormFields = () => {
 
           {createdTicket && (
             <div className="success-message">
-              <p>
-                Pedido criado com sucesso!
-                <a
-                  href={`/pedido/${createdTicket._id}`}
-                  className="link-detalhes"
-                >
-                  Ver detalhes
-                </a>
-              </p>
+              Pedido criado com sucesso!
+              <a
+                href={`/pedido/${createdTicket._id}`}
+                className="link-detalhes"
+              >
+                Ver detalhes
+              </a>
             </div>
           )}
 
@@ -113,13 +110,6 @@ const FormFields = () => {
           </div>
         </div>
       </form>
-
-      <div className="info-panel no-bg">
-        <p>
-          Através da tua descrição irá ser gerado um pequeno título com recurso
-          a inteligência artificial.
-        </p>
-      </div>
     </div>
   );
 };

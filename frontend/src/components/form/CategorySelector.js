@@ -2,7 +2,7 @@ const CategorySelector = ({ disabled, value, onChange, categorias }) => {
   return (
     <div className="form-field">
       <label>
-        <span>Categorias</span>
+        <span>Categorias *</span>
 
         <select
           disabled={disabled}
