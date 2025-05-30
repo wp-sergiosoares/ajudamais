@@ -6,8 +6,6 @@ import FiltroCategory from "../components/FiltroCategory";
 
 import { useTicketNearBy } from "../hooks/useTicketNearBy";
 
-import { Helmet } from "react-helmet-async";
-
 const TicketNearby = () => {
   const { tickets, distanceFilter, getDistanceNearBy, isLoading, error } =
     useTicketNearBy();
@@ -22,15 +20,6 @@ const TicketNearby = () => {
 
   return (
     <div className="wrapper wrapper-pedidos">
-      <Helmet>
-        <title>Pedidos perto de ti - Ajuda +</title>
-        <meta
-          name="description"
-          content="Lista de pedidos de ajuda ou ofertas de serviços listados por proximidade ao utilizador."
-        />
-        <link rel="canonical" href="/" />
-      </Helmet>
-
       <div className="page-center">
         {/* <SidebarLeft /> */}
 
