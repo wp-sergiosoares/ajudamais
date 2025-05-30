@@ -13,8 +13,6 @@ export const useTicketNearBy = () => {
   const [userCoords, setUserCoords] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  console.log(categoryFilter);
-
   //*
   //*
   // calcula a distancia
@@ -34,8 +32,6 @@ export const useTicketNearBy = () => {
 
     return distanceMeters;
   };
-
-  console.log(typeFilter, statusFilter, categoryFilter);
 
   // Get user location only once
   useEffect(() => {

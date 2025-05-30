@@ -192,6 +192,7 @@ footer .menu li a {
   display: flex;
   align-items: center;
   gap:10px;
+  background-color: #fff;
 }
 
 .site-menu a span.icon {
@@ -220,34 +221,39 @@ footer .menu li a {
 }
 
 .page-header {
-  margin:20px 0 20px 0;
+  margin:20px 0 50px 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: #333 solid 1px;
-  padding-bottom: 20px;
+  border-bottom: var(--primary) solid 1px;
+  padding-bottom: 10px;
   gap:20px;
 }
 
 .page-header p {
   margin: 0;
   margin-top: 10px;
+  color: var(--primary);
 }
+
 
 .page-header .btn {
   padding: 0.3rem;
-  border: var(--text-color) solid 1px;
-  color: var(--text-color);
+  border: none;
+  color: var(--primary);
 }
 
 .page-header .btn:hover {
   background: none;
-  color: var(--text-color);
+  color: var(--secondary);
 }
 
 .page-header h1 {
   margin:0;
+  color: var(--primary);
 }
+
+
 
 .ticket-info {
   padding: 10px;
@@ -630,9 +636,27 @@ input {
 
 
 .ticket-action {
-
- margin-top: 20px;
+ margin-top: 30px;
  margin-bottom: 0;
+}
+
+.ticket-action-help {
+  background-color: var(--secondary);
+  padding: 1.2rem 0.875rem;
+  border:var(--text-color) solid 1px;
+  font-style: italic;
+  border-radius: 5px;
+  font-size: 0.9rem;
+}
+
+.ticket-action-help a {
+  color: var(--text-color);
+}
+
+.ticket-action-help h4 {
+  margin:0;
+  margin-block-end: 10px;
+  font-size: 1rem;
 }
 
 .ticket-action .btn {

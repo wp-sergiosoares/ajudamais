@@ -125,7 +125,7 @@ const UserProfile = () => {
 
                   <div className="ticket-actions">
                     <div className="ticket-sub-header">
-                      <div class="ticket-category">
+                      <div className="ticket-category">
                         <span>{ticket.category}</span>
                       </div>
                       <div>{ticket.status}</div>
@@ -140,16 +140,18 @@ const UserProfile = () => {
 
                     <div className="ticket-footer">
                       <Link to={`/pedido/${ticket._id}`}>
-                        <span class="material-symbols-outlined">link</span>
+                        <span className="material-symbols-outlined">link</span>
                       </Link>
                       <button>
-                        <span class="material-symbols-outlined">edit</span>
+                        <span className="material-symbols-outlined">edit</span>
                       </button>
                       <button onClick={(e) => handleDelete(e, ticket._id)}>
-                        <span class="material-symbols-outlined">delete</span>
+                        <span className="material-symbols-outlined">
+                          delete
+                        </span>
                       </button>
                       <button onClick={(e) => handleConcluido(e, ticket._id)}>
-                        <span class="material-symbols-outlined">check</span>
+                        <span className="material-symbols-outlined">check</span>
                       </button>
                     </div>
                   </div>

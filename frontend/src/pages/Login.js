@@ -15,6 +15,7 @@ const Login = () => {
   return (
     <form className="login" onSubmit={handleSubmit}>
       <h3>Iniciar Sessão</h3>
+      <p>A sua ajuda conta! Faça login e continue a apoiar quem precisa.”</p>
       <div className="form-field">
         <label>
           Email:

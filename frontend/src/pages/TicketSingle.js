@@ -40,11 +40,14 @@ const TicketSingle = () => {
   return (
     <div className="page-center page-center-small">
       <div className="page-header">
-        {ticket.typeOfTicket === "pedido" ? (
-          <h1>Pedido de ajuda</h1>
-        ) : (
-          <h1>Ofereço para</h1>
-        )}
+        <div>
+          {ticket.typeOfTicket === "pedido" ? (
+            <h1>Pedido de ajuda</h1>
+          ) : (
+            <h1>Ofereço para</h1>
+          )}
+          <p>Vamos construir juntos um lugar mais solidário — participe!</p>
+        </div>
 
         <button
           onClick={() => navigate(-1)}
@@ -66,14 +69,10 @@ const TicketSingle = () => {
         <div className="ticket-description">{ticket.description}</div>
 
         {ticket.email && (
-          <div className="ticket-action">
-            Ajuda já!
-            <Link
-              to={`mailto:${ticket.email}`}
-              className="btn btn-normal btn-secondary"
-            >
-              {ticket.email}
-            </Link>
+          <div className="ticket-action ticket-action-help">
+            <h4>Seja protagonista na sua comunidade.</h4>
+            Entra em contacto com este pedido através do email:{" "}
+            <Link to={`mailto:${ticket.email}`}>{ticket.email}</Link>
           </div>
         )}
 

@@ -52,7 +52,6 @@ const getTicketsNearBy = async (req, res) => {
 const getAllTickets = async (req, res) => {
   const user_id = req.user._id;
   const { status } = req.query;
-
   const query = { user_id };
 
   if (status) {
@@ -61,6 +60,7 @@ const getAllTickets = async (req, res) => {
   if (user_id) {
     query.user_id = user_id;
   }
+
   try {
     const tickets = await Ticket.find(query).sort({
       createdAt: -1,

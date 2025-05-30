@@ -15,7 +15,10 @@ const Signup = () => {
   return (
     <form className="signup" onSubmit={handleSubmit}>
       <h3>Criar uma conta</h3>
-      <p>Assim já pode ajudar ou ser ajudado.</p>
+      <p>
+        É rápido e fácil criar a sua conta. Junte-se ao Ajuda+ e faça a
+        diferença na vida de alguém.
+      </p>
       <div className="form-field">
         <label>
           Email:
