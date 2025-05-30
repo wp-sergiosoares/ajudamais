@@ -212,12 +212,12 @@ footer .menu li a {
 
 
 .page-center {
-  width: 980px;
+  max-width: 980px;
   margin:0 auto;
 }
 
 .page-center-small {
-  width: 500px;
+  max-width: 500px;
 }
 
 .page-header {
@@ -641,7 +641,7 @@ input {
 }
 
 .ticket-action-help {
-  background-color: var(--secondary);
+  background-color: var(--backgroud-color);
   padding: 1.2rem 0.875rem;
   border:var(--text-color) solid 1px;
   font-style: italic;
@@ -1226,9 +1226,11 @@ form .valid input {
   }
   .filtros {
     flex-direction: column;
+    gap:0;
   }
   .filtros select {
     width: 100%;
+    margin-block: 2px;
   }
   .ticket-list-columns {
     grid-template-columns: repeat(1,1fr)
@@ -1280,5 +1282,11 @@ form .valid input {
   }
   .single-ticket {
     margin-inline: 20px;
+  }
+
+  .user-menu {
+    position: absolute;
+    right:20px;
+    top:30px;
   }
 }

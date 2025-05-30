@@ -6,6 +6,8 @@ import { AuthContextProvider } from "./context/AuthContext";
 import { InfoProvider } from "./context/InfoContext";
 import { FiltroProvider } from "./context/FiltrosContext";
 
+import { HelmetProvider } from "react-helmet-async";
+
 import { TicketsContextProvider } from "./context/TicketContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -15,7 +17,9 @@ root.render(
       <TicketsContextProvider>
         <InfoProvider>
           <FiltroProvider>
-            <App />
+            <HelmetProvider>
+              <App />
+            </HelmetProvider>
           </FiltroProvider>
         </InfoProvider>
       </TicketsContextProvider>

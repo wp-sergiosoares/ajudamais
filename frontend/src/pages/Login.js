@@ -13,40 +13,42 @@ const Login = () => {
   };
 
   return (
-    <form className="login" onSubmit={handleSubmit}>
-      <h3>Iniciar Sessão</h3>
-      <p>A sua ajuda conta! Faça login e continue a apoiar quem precisa.”</p>
-      <div className="form-field">
-        <label>
-          Email:
-          <input
-            type="email"
-            onChange={(e) => setEmail(e.target.value)}
-            value={email}
-          />
-          <span>bla bla bla</span>
-        </label>
-      </div>
+    <div className="wrapper">
+      <form className="login" onSubmit={handleSubmit}>
+        <h3>Iniciar Sessão</h3>
+        <p>A sua ajuda conta! Faça login e continue a apoiar quem precisa.”</p>
+        <div className="form-field">
+          <label>
+            Email:
+            <input
+              type="email"
+              onChange={(e) => setEmail(e.target.value)}
+              value={email}
+            />
+            <span>bla bla bla</span>
+          </label>
+        </div>
 
-      <div className="form-field">
-        <label>
-          Password:
-          <input
-            type="password"
-            onChange={(e) => setPassword(e.target.value)}
-            value={password}
-          />
-          <span>Insira a sua password</span>
-        </label>
-      </div>
-      <div className="form-action">
-        <button className="btn btn-normal btn-primary" disabled={isLoading}>
-          Login
-        </button>
-      </div>
+        <div className="form-field">
+          <label>
+            Password:
+            <input
+              type="password"
+              onChange={(e) => setPassword(e.target.value)}
+              value={password}
+            />
+            <span>Insira a sua password</span>
+          </label>
+        </div>
+        <div className="form-action">
+          <button className="btn btn-normal btn-primary" disabled={isLoading}>
+            Login
+          </button>
+        </div>
 
-      {error && <div className="error">{error}</div>}
-    </form>
+        {error && <div className="error">{error}</div>}
+      </form>
+    </div>
   );
 };
 

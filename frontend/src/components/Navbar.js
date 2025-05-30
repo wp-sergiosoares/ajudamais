@@ -32,7 +32,7 @@ const Navbar = () => {
             <li>
               <Link to="/criar-novo-pedido/">
                 <span>Pede ou Oferece Ajuda</span>
-                <span className="material-symbols-outlined">north</span>
+                <span class="material-symbols-outlined">favorite</span>
               </Link>
             </li>
             {/* <li>
@@ -50,7 +50,7 @@ const Navbar = () => {
           </ul>
         </nav>
 
-        <nav>
+        <nav className="user-menu">
           {user && (
             <ul className="menu">
               {/* <li>
