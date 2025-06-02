@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
-import { useTickets } from "../context/FiltrosContext";
 import { getDistance } from "geolib";
-import { useTicketsContext } from "./useTicketsContext";
+
+import { useTickets } from "../../../context/FiltrosContext";
+import { useTicketsContext } from "../../../hooks/useTicketsContext";
 
 export const useTicketNearBy = () => {
   const { tickets, dispatch } = useTicketsContext();

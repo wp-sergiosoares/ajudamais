@@ -1,14 +1,13 @@
 // components
-import TicketDetails from "../components/TicketDetails";
 import FiltroType from "../components/FiltroType";
 import FiltroDistance from "../components/FiltroDistance";
 import FiltroCategory from "../components/FiltroCategory";
 
-import { useTicketNearBy } from "../hooks/useTicketNearBy";
+import { useTicketNearBy } from "../features/tickets/hooks/useTicketNearBy";
+import TicketList from "../features/tickets/components/TicketList";
 
 const TicketNearby = () => {
-  const { tickets, distanceFilter, getDistanceNearBy, isLoading, error } =
-    useTicketNearBy();
+  const { tickets, distanceFilter, isLoading, error } = useTicketNearBy();
 
   if (isLoading)
     return (
@@ -53,19 +52,7 @@ const TicketNearby = () => {
           )}
         </div>
 
-        <ul className="ticket-list ticket-list-columns">
-          {tickets.map((ticket) => (
-            <TicketDetails
-              key={ticket.id}
-              ticket={ticket}
-              distance={
-                getDistanceNearBy(ticket) != null
-                  ? `${getDistanceNearBy(ticket)} m`
-                  : "?"
-              }
-            />
-          ))}
-        </ul>
+        <TicketList tickets={tickets} />
       </div>
     </div>
   );

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useNavigate } from "react-router";
 
-import { useTicketNearBy } from "../hooks/useTicketNearBy";
+import { useTicketNearBy } from "../features/tickets/hooks/useTicketNearBy";
 
 import { useInfo } from "../context/InfoContext";
 

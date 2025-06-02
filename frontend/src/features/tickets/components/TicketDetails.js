@@ -1,6 +1,10 @@
+import classNames from "classnames";
+
+import classes from "./TicketDetails.module.scss";
+
 import formatDistanceToNow from "date-fns/formatDistanceToNow";
 
-import { useInfo } from "../context/InfoContext";
+import { useInfo } from "../../../context/InfoContext";
 
 import { Link } from "react-router-dom";
 
@@ -11,15 +15,15 @@ const TicketDetails = ({ ticket, distance }) => {
 
   return (
     <li key={_id} className={category}>
-      <Link to={`/pedido/${_id}`} className="ticket-link">
-        <div className="ticket-container">
-          <div className="ticket-header">
-            <h2 className="ticket-title">{title}</h2>
+      <Link to={`/pedido/${_id}`} className={classes["ticket-link"]}>
+        <div className={classes["ticket-container"]}>
+          <div className={classes["ticket-header"]}>
+            <h2 className={classes["ticket-title"]}>{title}</h2>
           </div>
 
-          <div className="ticket-content">
+          <div className={classes["ticket-content"]}>
             <div>
-              <span className="ticket-category">
+              <span className={classes["ticket-category"]}>
                 {getCategoryLabel(category)}
               </span>
               <span>{distance}</span>
@@ -32,8 +36,8 @@ const TicketDetails = ({ ticket, distance }) => {
             {/* <div className="ticket-description">{description}</div> */}
           </div>
 
-          <div className="ticket-footer">
-            <div className="ticket-date">
+          <div className={classes["ticket-footer"]}>
+            <div className={classes["ticket-date"]}>
               {formatDistanceToNow(new Date(createdAt), {
                 addSuffix: true,
               })}
