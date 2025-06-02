@@ -1,0 +1,45 @@
+
+:global(.servicos_e_trabalho) .ticket-category {background-color: var(--cat-servicos-trabalho);}
+:global(.outros) .ticket-category {background-color: var(--cat-outros);}
+:global(.transporte_solidario) .ticket-category {background-color: var(--cat-transporte_solidario);}
+:global(.necessidades_basicas) .ticket-category {background-color: var(--cat-necessidades_basicas);}
+:global(.cuidados_e_apoio) .ticket-category {background-color: var(--cat-cuidados_e_apoio);}
+:global(.animais) .ticket-category {background-color: var(--cat-animais);}
+:global(.seguranca_alertas) .ticket-category {background-color: var(--cat-seguranca_alertas);}
+
+
+
+.ticket-details {
+  position: relative;
+  .ticket-content {
+    margin:20px 0;
+    display: flex;
+    font-size: 0.8rem;
+    justify-content:space-between;
+    }
+}
+
+
+
+
+.ticket-category {
+  background-color: var(--backgroud-color);
+  padding: 4px 10px;
+  border-radius: 20px;
+  margin-right: 10px;
+  color: var(--text-light);
+}
+
+
+.ticket-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  .ticket-date {
+    font-size: 0.8rem;
+    color:gray;
+    font-style: italic;
+  }
+}
+

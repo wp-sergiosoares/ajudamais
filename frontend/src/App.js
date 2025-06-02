@@ -11,7 +11,7 @@ import Signup from "./pages/Signup";
 import UserProfile from "./pages/UserProfile";
 
 import UserListAll from "./pages/UserListAll";
-import TicketSingle from "./pages/TicketSingle";
+import TicketSingle from "./components/layouts/SingleTicket/TicketSingle";
 
 import TicketAdd from "./pages/TicketAdd";
 

@@ -2,13 +2,12 @@ import classNames from "classnames";
 
 import classes from "./TicketList.module.scss";
 
-import TicketDetails from "./TicketDetails";
+import TicketItem from "./TicketItem";
 import { useTicketNearBy } from "../hooks/useTicketNearBy";
 
 const TicketList = ({ tickets }) => {
   const { getDistanceNearBy } = useTicketNearBy();
   return (
-    // <ul className="ticket-list ticket-list-columns">
     <ul
       className={classNames(
         classes["ticket-list"],
@@ -16,7 +15,7 @@ const TicketList = ({ tickets }) => {
       )}
     >
       {tickets.map((ticket) => (
-        <TicketDetails
+        <TicketItem
           key={ticket.id}
           ticket={ticket}
           distance={

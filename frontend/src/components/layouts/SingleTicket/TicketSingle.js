@@ -1,10 +1,17 @@
+import classes from "./TicketSingle.module.scss";
+import classNames from "classnames";
+
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useNavigate } from "react-router";
 
-import { useTicketNearBy } from "../features/tickets/hooks/useTicketNearBy";
+import { useTicketNearBy } from "../../../features/tickets/hooks/useTicketNearBy";
 
-import { useInfo } from "../context/InfoContext";
+import { useInfo } from "../../../context/InfoContext";
+
+import TicketHeader from "../../common/TicketHeader/TicketHeader";
+
+import TicketDetails from "../../common/TicketDetails/TicketDetails";
 
 const TicketSingle = () => {
   const { id } = useParams();
@@ -57,19 +64,26 @@ const TicketSingle = () => {
         </button>
       </div>
 
-      <div className="single-ticket">
-        <div className={`ticket-details ${ticket.category}`}>
-          <span className="ticket-category">
-            {getCategoryLabel(ticket.category)}
-          </span>
-          <span>{ticket.cidade}</span>
-          {/* <span>{ticket.distance}</span> */}
+      <div className={classes["single-ticket"]}>
+        <TicketHeader title={ticket.title} />
+
+        <TicketDetails
+          category={ticket.category}
+          cidade={ticket.cidade}
+          createdAt={ticket.createdAt}
+        />
+
+        <div className={classes["ticket-description"]}>
+          {ticket.description}
         </div>
-        <div className="ticket-title">{ticket.title}</div>
-        <div className="ticket-description">{ticket.description}</div>
 
         {ticket.email && (
-          <div className="ticket-action ticket-action-help">
+          <div
+            className={classNames(
+              classes["ticket-action"],
+              classes["ticket-action-help"]
+            )}
+          >
             <h4>Seja protagonista na sua comunidade.</h4>
             Entra em contacto com este pedido através do email:{" "}
             <Link to={`mailto:${ticket.email}`}>{ticket.email}</Link>
@@ -77,7 +91,7 @@ const TicketSingle = () => {
         )}
 
         {ticket.phone && (
-          <div className="ticket-action">
+          <div className={classes["ticket-action"]}>
             <span>O Autor do pedido deixou um contacto</span>
             <button className="btn btn-small btn-secondary">
               {ticket.phone}

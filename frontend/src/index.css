@@ -287,12 +287,7 @@ footer .menu li a {
 }
 
 
-.ticket-description {
-  margin-bottom: 20px;
-  color: gray;
-  font-size: 0.9rem;
-  line-height: 1.4rem;
-}
+
 
 .ticket-icon {
   position: relative;
@@ -429,36 +424,7 @@ input {
 }
 
 
-.ticket-action {
- margin-top: 30px;
- margin-bottom: 0;
-}
 
-.ticket-action-help {
-  background-color: var(--backgroud-color);
-  padding: 1.2rem 0.875rem;
-  border:var(--text-color) solid 1px;
-  font-style: italic;
-  border-radius: 5px;
-  font-size: 0.9rem;
-}
-
-.ticket-action-help a {
-  color: var(--text-color);
-}
-
-.ticket-action-help h4 {
-  margin:0;
-  margin-block-end: 10px;
-  font-size: 1rem;
-}
-
-.ticket-action .btn {
-  margin-left: 10px;
-}
-
-.ticket-action span {margin-right: 5px;}
-.ticket-action p {margin: 0;}
 
 .buttons {
   display: flex;
@@ -873,30 +839,7 @@ label, input {
 
 
 
-.single-ticket {
-  background-color: #fff;
-  padding: 2rem;
-  border:var(--text-color) solid 1px;
-  border-radius: 5px;
-}
 
-.ticket-title {
-  margin-bottom: 20px;
-  margin-top: 20px;
-}
-
-.ticket-details {
-  display: flex;
-  align-items: center;
-}
-
-.ticket-action span {
-  font-size: 0.8rem;
-  display: block;
-}
-.ticket-action button {
-  margin-top: 10px;
-}
 
 
 .site-menu {
