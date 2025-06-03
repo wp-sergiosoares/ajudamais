@@ -53,7 +53,7 @@ const TicketSingle = () => {
           ) : (
             <h1>Ofereço para</h1>
           )}
-          <p>Vamos construir juntos um lugar mais solidário — participe!</p>
+          <p>Vamos cnstruir juntos um lugar mais solidário — participe!</p>
         </div>
 
         <button
