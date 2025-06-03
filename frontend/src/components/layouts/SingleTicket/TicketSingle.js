@@ -1,6 +1,3 @@
-import classes from "./TicketSingle.module.scss";
-import classNames from "classnames";
-
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useNavigate } from "react-router";
@@ -49,22 +46,22 @@ const TicketSingle = () => {
       <div className="page-header">
         <div>
           {ticket.typeOfTicket === "pedido" ? (
-            <h1>Pedido de ajuda</h1>
+            <h1 className="page-header-title">Pedido de ajuda</h1>
           ) : (
-            <h1>Ofereço para</h1>
+            <h1 className="page-header-title">Ofereço para</h1>
           )}
           <p>Vamos construir juntos um lugar mais solidário — participe!</p>
         </div>
 
         <button
           onClick={() => navigate(-1)}
-          className="btn btn-small btn-secondary"
+          className="btn btn-small btn-secondary mb-2"
         >
           <span className="material-symbols-outlined">keyboard_arrow_left</span>
         </button>
       </div>
 
-      <div className={classes["single-ticket"]}>
+      <div className="single-ticket">
         <TicketHeader title={ticket.title} />
 
         <TicketDetails
@@ -73,17 +70,10 @@ const TicketSingle = () => {
           createdAt={ticket.createdAt}
         />
 
-        <div className={classes["ticket-description"]}>
-          {ticket.description}
-        </div>
+        <div className="ticket-description">{ticket.description}</div>
 
         {ticket.email && (
-          <div
-            className={classNames(
-              classes["ticket-action"],
-              classes["ticket-action-help"]
-            )}
-          >
+          <div className="ticket-action ticket-action-help">
             <h4>Seja protagonista na sua comunidade.</h4>
             Entra em contacto com este pedido através do email:{" "}
             <Link to={`mailto:${ticket.email}`}>{ticket.email}</Link>
@@ -91,7 +81,7 @@ const TicketSingle = () => {
         )}
 
         {ticket.phone && (
-          <div className={classes["ticket-action"]}>
+          <div className="ticket-action">
             <span>O Autor do pedido deixou um contacto</span>
             <button className="btn btn-small btn-secondary">
               {ticket.phone}
