@@ -9,7 +9,7 @@ const TicketItem = ({ ticket, distance }) => {
   return (
     <li key={_id}>
       <Link to={`/pedido/${_id}`} className="ticket-link">
-        <div className="ticket-container">
+        <div className="ticket-container flex flex-col items-center p-7 rounded-2xl">
           <TicketHeader title={title} />
 
           <TicketDetails
