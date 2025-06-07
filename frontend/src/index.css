@@ -915,86 +915,6 @@ form .valid input {
 }
 
 
-
-
-@media (max-width: 480px) {
-  header .container,
-  .page-center {
-    width: auto;
-  }
-  .wrapper {
-    margin:20px;
-  }
-  .filtros {
-    flex-direction: column;
-    gap:0;
-  }
-  .filtros select {
-    width: 100%;
-    margin-block: 2px;
-  }
-  .ticket-list-columns {
-    grid-template-columns: repeat(1,1fr)
-  }
-  .contact-container {
-    width: auto;
-    margin:0 20px;
-  }
-  .form-fields {
-    display: block;
-  }
-  .page-header {
-    margin:20px;
-  }
-  header .container {
-    flex-direction: column;
-    gap:20px;
-    align-items: start;
-  }
-  .site-menu {
-    position: relative;
-    left: auto;
-    transform: none;
-  }
-
-  footer .container {
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-  }
-
-  .section-hero .container {
-    width: auto;
-  }
-  .pages-wrapper {
-    margin: 10px;
-  }
-  .pages-wrapper .container {
-    padding: 10px;
-  }
-  .hero-section-image {
-    display: none;
-  }
-  .buttons {
-    flex-direction: column;
-  }
-  .card-items {
-    flex-direction: column;
-  }
-  .single-ticket {
-    margin-inline: 20px;
-  }
-
-  .user-menu {
-    position: absolute;
-    right:20px;
-    top:30px;
-  }
-}
-
-
-
-
 /* TICKET SINGLE */
 
 .page-header {
@@ -1208,4 +1128,92 @@ form .valid input {
     font-style: italic;
   }
 }
+
+
+@media (max-width:48rem) {
+  .ticket-list-columns {
+    grid-template-columns: repeat(2,1fr)
+  }
+}
+
+
+@media (max-width:40rem) {
+  header .container,
+  .page-center {
+    width: auto;
+  }
+  .wrapper {
+    margin:20px;
+  }
+  .filtros {
+    flex-direction: column;
+    gap:0;
+  }
+  .filtros select {
+    width: 100%;
+    margin-block: 2px;
+  }
+  .ticket-list-columns {
+    grid-template-columns: repeat(1,1fr)
+  }
+  .contact-container {
+    width: auto;
+    margin:0 20px;
+  }
+  .form-fields {
+    display: block;
+  }
+  .page-header {
+    margin:20px;
+  }
+  header .container {
+    flex-direction: column;
+    gap:20px;
+    align-items: start;
+  }
+  .site-menu {
+    position: relative;
+    left: auto;
+    transform: none;
+  }
+
+  footer .container {
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+
+  .section-hero .container {
+    width: auto;
+  }
+  .pages-wrapper {
+    margin: 10px;
+  }
+  .pages-wrapper .container {
+    padding: 10px;
+  }
+  .hero-section-image {
+    display: none;
+  }
+  .buttons {
+    flex-direction: column;
+  }
+  .card-items {
+    flex-direction: column;
+  }
+  .single-ticket {
+    margin-inline: 20px;
+  }
+
+  .user-menu {
+    position: absolute;
+    right:20px;
+    top:30px;
+  }
+}
+
+
+
+
+
 
