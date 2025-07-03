@@ -1,5 +1,3 @@
-import classes from "./TicketDetails.module.scss";
-
 import formatDistanceToNow from "date-fns/formatDistanceToNow";
 
 import { useInfo } from "../../../context/InfoContext";
@@ -9,10 +7,10 @@ const TicketDetails = ({ category, cidade, createdAt, distance }) => {
 
   return (
     <div>
-      <div className={classes["ticket-details"]}>
-        <div className={classes["ticket-content"]}>
+      <div className="ticket-details">
+        <div className="ticket-content">
           <div className={category}>
-            <span className={classes["ticket-category"]}>
+            <span className="ticket-category">
               {getCategoryLabel(category)}
             </span>
             <span>{distance}</span>
@@ -25,8 +23,8 @@ const TicketDetails = ({ category, cidade, createdAt, distance }) => {
           {/* <div className="ticket-description">{description}</div> */}
         </div>
 
-        <div className={classes["ticket-footer"]}>
-          <div className={classes["ticket-date"]}>
+        <div className="ticket-footer">
+          <div className="ticket-date">
             {formatDistanceToNow(new Date(createdAt), {
               addSuffix: true,
             })}
